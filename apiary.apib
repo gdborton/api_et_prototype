@@ -1,47 +1,41 @@
 FORMAT: 1A
-HOST: http://www.google.com
+HOST: http://www.exacttargetapis.com/
 
-# Tracking API
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+# Jobs Events API
+Method for retrieving Event information from a single job.
 
-# Group Notes
-Notes related resources of the **Notes API**
+# Group Events
 
-## Notes Collection [/notes]
-### List all Notes [GET]
-+ Response 200 (application/json)
-
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
-
-### Create a Note [POST]
-+ Request (application/json)
-
-        { "title": "Buy cheese and bread for breakfast." }
-
-+ Response 201 (application/json)
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Note [/notes/{id}]
-A single Note object with all its details
+## Jobs Events [/jobs/{id}/events{?fields=...}]
+A single Event object belonging to a job.
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number, `123`) ... Numeric `id` of the Job to retrieve events from
+    + fields (optional, string, `sent,delivered,bouncesHard,bouncesSoft,bouncesBLocked,uniqueOpened,uniqueClicked,unsubscribed` ) ... Comma Separated string of event fields to be returned. 
 
-### Retrieve a Note [GET]
-+ Response 200 (application/json)
-
-    + Header
-
-            X-My-Header: The Value
-
++ Model (application/json)
+    JSON Representation of events that have occurred on a job.
     + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/jobs/123/events" },
+                    "parent": { "href": /jobs/123" }
+                },
+                "id": "123",
+                "total": {
+                    "sent": 18714,
+                    "delivered": 18500,
+                    "bouncesHard": 14,
+                    "bouncesSoft": 100,
+                    "bouncesBlocked": 50,
+                    "uniqueOpened": 18333,
+                    "uniqueClicked": 18222,
+                    "unsubscribed": 3
+                }
+            }
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+### Retrieve Events for a job [GET]
++ Response 200
+    [Jobs Events][]
 
-### Remove a Note [DELETE]
-+ Response 204
