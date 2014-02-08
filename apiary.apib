@@ -55,22 +55,16 @@ A collection of all events that have occurred for an account, total.
                     "parent": { "href": /account/123" }
                 },
                 "id": "123",
-                "sent": 18714,
-                "delivered": 18500,
-                "bouncesHard": 14,
-                "bouncesSoft": 100,
-                "bouncesBlocked": 50,
-                "uniqueOpened": 18333,
-                "uniqueClicked": 18222,
-                "unsubscribed": 3,
-                "queued" : 0,
-                "errored" : 0,
-                "alerts": 0,
-                "overwrites": 0
+                "toSend": 18714,
+                "delivered": { "total" : 18500, "percent" : 98.85 },
+                "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                "opened" : { "unique" : 18333 },
+                "clicked" : { "unique": 18222 },
+                "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                "pending" : { "total" : 200, "percent" : 0.011 } 
+                "inProgress" : { "total" : 100, "percent" : 0.005 },
+                "sent" : { "total" : 18414, "percent" : 98.397 }
             }
-
-
-
 
 
 + Parameters
@@ -98,37 +92,40 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                 "id": "123",
                 "Events": [
                     {
-                        "date" : "2014-02-06T07:06:00Z"
-                        "sent": 18714,
-                        "delivered": 18500,
-                        "bouncesHard": 14,
-                        "bouncesSoft": 100,
-                        "bouncesBlocked": 50,
-                        "uniqueOpened": 18333,
-                        "uniqueClicked": 18222,
-                        "unsubscribed": 3
+                        "date" : "2014-02-06T07:06:00Z",
+                        "toSend": 18714,
+                        "delivered": { "total" : 18500, "percent" : 98.85 },
+                        "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                        "opened" : { "unique" : 18333 },
+                        "clicked" : { "unique": 18222 },
+                        "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                        "pending" : { "total" : 200, "percent" : 0.011 } 
+                        "inProgress" : { "total" : 100, "percent" : 0.005 },
+                        "sent" : { "total" : 18414, "percent" : 98.397 }
                     },
                     {
-                        "date" : "2014-02-05T07:06:00Z"
-                        "sent": 18714,
-                        "delivered": 18500,
-                        "bouncesHard": 14,
-                        "bouncesSoft": 100,
-                        "bouncesBlocked": 50,
-                        "uniqueOpened": 18333,
-                        "uniqueClicked": 18222,
-                        "unsubscribed": 3
+                        "date" : "2014-02-05T07:06:00Z",
+                        "toSend": 18714,
+                        "delivered": { "total" : 18500, "percent" : 98.85 },
+                        "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                        "opened" : { "unique" : 18333 },
+                        "clicked" : { "unique": 18222 },
+                        "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                        "pending" : { "total" : 200, "percent" : 0.011 } 
+                        "inProgress" : { "total" : 100, "percent" : 0.005 },
+                        "sent" : { "total" : 18414, "percent" : 98.397 }
                     },
                     {
-                        "date" : "2014-02-04T07:06:00Z"
-                        "sent": 18714,
-                        "delivered": 18500,
-                        "bouncesHard": 14,
-                        "bouncesSoft": 100,
-                        "bouncesBlocked": 50,
-                        "uniqueOpened": 18333,
-                        "uniqueClicked": 18222,
-                        "unsubscribed": 3
+                        "date" : "2014-02-04T07:06:00Z",
+                        "toSend": 18714,
+                        "delivered": { "total" : 18500, "percent" : 98.85 },
+                        "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                        "opened" : { "unique" : 18333 },
+                        "clicked" : { "unique": 18222 },
+                        "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                        "pending" : { "total" : 200, "percent" : 0.011 } 
+                        "inProgress" : { "total" : 100, "percent" : 0.005 },
+                        "sent" : { "total" : 18414, "percent" : 98.397 }
                     }
                 ]
             }
@@ -155,37 +152,40 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                 },
                 "Events": [
                     {
-                        "date" : "2014-02-06T01:00:00Z"
-                        "sent": 18714,
-                        "delivered": 18500,
-                        "bouncesHard": 14,
-                        "bouncesSoft": 100,
-                        "bouncesBlocked": 50,
-                        "uniqueOpened": 18333,
-                        "uniqueClicked": 18222,
-                        "unsubscribed": 3
+                        "date" : "2014-02-04T01:00:00Z",
+                        "toSend": 18714,
+                        "delivered": { "total" : 18500, "percent" : 98.85 },
+                        "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                        "opened" : { "unique" : 18333 },
+                        "clicked" : { "unique": 18222 },
+                        "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                        "pending" : { "total" : 200, "percent" : 0.011 } 
+                        "inProgress" : { "total" : 100, "percent" : 0.005 },
+                        "sent" : { "total" : 18414, "percent" : 98.397 }
                     },
                     {
-                        "date" : "2014-02-06T02:00:00Z"
-                        "sent": 18714,
-                        "delivered": 18500,
-                        "bouncesHard": 14,
-                        "bouncesSoft": 100,
-                        "bouncesBlocked": 50,
-                        "uniqueOpened": 18333,
-                        "uniqueClicked": 18222,
-                        "unsubscribed": 3
+                        "date" : "2014-02-04T02:00:00Z",
+                        "toSend": 18714,
+                        "delivered": { "total" : 18500, "percent" : 98.85 },
+                        "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                        "opened" : { "unique" : 18333 },
+                        "clicked" : { "unique": 18222 },
+                        "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                        "pending" : { "total" : 200, "percent" : 0.011 } 
+                        "inProgress" : { "total" : 100, "percent" : 0.005 },
+                        "sent" : { "total" : 18414, "percent" : 98.397 }
                     },
                     {
-                        "date" : "2014-02-06T03:00:00Z"
-                        "sent": 18714,
-                        "delivered": 18500,
-                        "bouncesHard": 14,
-                        "bouncesSoft": 100,
-                        "bouncesBlocked": 50,
-                        "uniqueOpened": 18333,
-                        "uniqueClicked": 18222,
-                        "unsubscribed": 3
+                        "date" : "2014-02-04T03:00:00Z",
+                        "toSend": 18714,
+                        "delivered": { "total" : 18500, "percent" : 98.85 },
+                        "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                        "opened" : { "unique" : 18333 },
+                        "clicked" : { "unique": 18222 },
+                        "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                        "pending" : { "total" : 200, "percent" : 0.011 } 
+                        "inProgress" : { "total" : 100, "percent" : 0.005 },
+                        "sent" : { "total" : 18414, "percent" : 98.397 }
                     }
                 ]
             }
