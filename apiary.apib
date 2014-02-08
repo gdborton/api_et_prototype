@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://www.exacttargetapis.com/
 
-# Jobs Events API
+# Events APIs
 Method for retrieving Event information from a single job.
 
 # Group Events
@@ -39,14 +39,121 @@ A single Event object belonging to a job.
 + Response 200
     [Jobs Events][]
 
-## Account Events [/account/{mid}/events{?fields&startDate&endDate&precision]
-A collection of events that have occurred for an account
+## Account Events Daily [/account/{mid}/events/daily{?fields,startDate,endDate}]
+A collection of events that have occurred for an account, rolled into 24 hour chunks
+
++ Model (application/json)
+    JSON Representation of events that have occurred on an Account, rolled up daily
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/account/123/events/daily/{?fields,startDate,endDate}" },
+                    "parent": { "href": /account/123/events/" }
+                },
+                "id": "123",
+                "Events": [
+                    {
+                        "date" : "2014-02-06T07:06:00Z"
+                        "sent": 18714,
+                        "delivered": 18500,
+                        "bouncesHard": 14,
+                        "bouncesSoft": 100,
+                        "bouncesBlocked": 50,
+                        "uniqueOpened": 18333,
+                        "uniqueClicked": 18222,
+                        "unsubscribed": 3
+                    },
+                    {
+                        "date" : "2014-02-05T07:06:00Z"
+                        "sent": 18714,
+                        "delivered": 18500,
+                        "bouncesHard": 14,
+                        "bouncesSoft": 100,
+                        "bouncesBlocked": 50,
+                        "uniqueOpened": 18333,
+                        "uniqueClicked": 18222,
+                        "unsubscribed": 3
+                    },
+                    {
+                        "date" : "2014-02-04T07:06:00Z"
+                        "sent": 18714,
+                        "delivered": 18500,
+                        "bouncesHard": 14,
+                        "bouncesSoft": 100,
+                        "bouncesBlocked": 50,
+                        "uniqueOpened": 18333,
+                        "uniqueClicked": 18222,
+                        "unsubscribed": 3
+                    }
+                ]
+            }
 
 + Parameters
     + mid (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
-    + precision (optional, string, `[day,hour,all]`) ... Precision with which to collate results.
 
+### Retrieve Events for an Account with 24 hour precision [GET]
++ Response 200
+    [Account Events Daily][]
+
+## Account Events Hourly [/account/{mid}/events/hourly{?fields,startDate,endDate}]
++ Model (application/json)
+    JSON Representation of events that have occurred on an Account, rolled up hourly.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/account/123/events" },
+                    "parent": { "href": /account/123" }
+                },
+                "Events": [
+                    {
+                        "date" : "2014-02-06T01:00:00Z"
+                        "sent": 18714,
+                        "delivered": 18500,
+                        "bouncesHard": 14,
+                        "bouncesSoft": 100,
+                        "bouncesBlocked": 50,
+                        "uniqueOpened": 18333,
+                        "uniqueClicked": 18222,
+                        "unsubscribed": 3
+                    },
+                    {
+                        "date" : "2014-02-06T02:00:00Z"
+                        "sent": 18714,
+                        "delivered": 18500,
+                        "bouncesHard": 14,
+                        "bouncesSoft": 100,
+                        "bouncesBlocked": 50,
+                        "uniqueOpened": 18333,
+                        "uniqueClicked": 18222,
+                        "unsubscribed": 3
+                    },
+                    {
+                        "date" : "2014-02-06T03:00:00Z"
+                        "sent": 18714,
+                        "delivered": 18500,
+                        "bouncesHard": 14,
+                        "bouncesSoft": 100,
+                        "bouncesBlocked": 50,
+                        "uniqueOpened": 18333,
+                        "uniqueClicked": 18222,
+                        "unsubscribed": 3
+                    }
+                ]
+            }
+
++ Parameters
+    + mid (required) ... MID for the account
+    + fields (optional, string) ... event fields requested, default is all fields
+    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
+    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+
+### Retrieve Events for an Account, with Hourly precision [GET]
+
++ Response 200
+    [Account Events Hourly][]
 
