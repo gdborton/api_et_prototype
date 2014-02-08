@@ -39,6 +39,39 @@ A single Event object belonging to a job.
 + Response 200
     [Jobs Events][]
 
+## Account Events [/account/{mid}/events{?fields,startDate,endDate}]
+A collection of all events that have occurred for an account, total.
+
++ Model (application/json)
+    JSON Representation of events that have occurred on an Account, rolled up daily
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/account/123/events{?fields,startDate,endDate}" },
+                    "parent": { "href": /account/123" }
+                },
+                "id": "123",
+                "sent": 18714,
+                "delivered": 18500,
+                "bouncesHard": 14,
+                "bouncesSoft": 100,
+                "bouncesBlocked": 50,
+                "uniqueOpened": 18333,
+                "uniqueClicked": 18222,
+                "unsubscribed": 3
+            }
+
++ Parameters
+    + mid (required) ... MID for the account
+    + fields (optional, string) ... event fields requested, default is all fields
+    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
+    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+
+### Retrieve all Events for an Account [GET]
++ Response 200
+    [Account Events][]
+
 ## Account Events Daily [/account/{mid}/events/daily{?fields,startDate,endDate}]
 A collection of events that have occurred for an account, rolled into 24 hour chunks
 
@@ -95,7 +128,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
-### Retrieve Events for an Account with 24 hour precision [GET]
+### Retrieve Events for an Account with daily precision [GET]
 + Response 200
     [Account Events Daily][]
 
