@@ -205,10 +205,10 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 
 
 ## Message Events [/message/{id}/events{?fields,startDate,endDate}]
-A collection of all events that have occurred for an message, total.
+A collection of all events that have occurred for a message, total.
 
 + Model (application/json)
-    JSON Representation of events that have occurred on an Message, rolled up daily
+    JSON Representation of events that have occurred on a Message, rolled up daily
     + Body
     
             {
@@ -237,15 +237,15 @@ A collection of all events that have occurred for an message, total.
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
-### Retrieve all Events for an Message [GET]
+### Retrieve all Events for a Message [GET]
 + Response 200
     [Message Events][]
 
 ## Message Events Daily [/message/{id}/events/daily{?fields,startDate,endDate}]
-A collection of events that have occurred for an message, rolled into 24 hour chunks
+A collection of events that have occurred for a message, rolled into 24 hour chunks
 
 + Model (application/json)
-    JSON Representation of events that have occurred on an Message, rolled up daily
+    JSON Representation of events that have occurred on a Message, rolled up daily
     + Body
     
             {
@@ -301,13 +301,13 @@ A collection of events that have occurred for an message, rolled into 24 hour ch
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
-### Retrieve Events for an Message with daily precision [GET]
+### Retrieve Events for a Message with daily precision [GET]
 + Response 200
     [Message Events Daily][]
 
 ## Message Events Hourly [/message/{id}/events/hourly{?fields,startDate,endDate}]
 + Model (application/json)
-    JSON Representation of events that have occurred on an Message, rolled up hourly.
+    JSON Representation of events that have occurred on a Message, rolled up hourly.
     + Body
     
             {
@@ -362,7 +362,7 @@ A collection of events that have occurred for an message, rolled into 24 hour ch
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
-### Retrieve Events for an Message, with Hourly precision [GET]
+### Retrieve Events for a Message, with Hourly precision [GET]
 
 + Response 200
     [Message Events Hourly][]
