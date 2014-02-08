@@ -24,14 +24,15 @@ A single Event object belonging to a job.
                 },
                 "id": "123",
                 "total": {
-                    "sent": 18714,
-                    "delivered": 18500,
-                    "bouncesHard": 14,
-                    "bouncesSoft": 100,
-                    "bouncesBlocked": 50,
-                    "uniqueOpened": 18333,
-                    "uniqueClicked": 18222,
-                    "unsubscribed": 3
+                    "toSend": 18714,
+                    "delivered": { "total" : 18500, "percent" : 98.85 },
+                    "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                    "opened" : { "unique" : 18333 },
+                    "clicked" : { "unique": 18222 },
+                    "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                    "pending" : { "total" : 200, "percent" : 0.011 } 
+                    "inProgress" : { "total" : 100, "percent" : 0.005 },
+                    "sent" : { "total" : 18414, "percent" : 98.397 }
                 }
             }
 
@@ -48,6 +49,8 @@ A collection of all events that have occurred for an account, total.
     
             {
                 "_links": {
+                    "daily": { "href": "/account/123/events/daily{?fields,startDate,endDate}"},
+                    "hourly": { "href": "/account/123/events/hourly{?fields,startDate,endDate}"},
                     "self": { "href": "/account/123/events{?fields,startDate,endDate}" },
                     "parent": { "href": /account/123" }
                 },
@@ -59,8 +62,16 @@ A collection of all events that have occurred for an account, total.
                 "bouncesBlocked": 50,
                 "uniqueOpened": 18333,
                 "uniqueClicked": 18222,
-                "unsubscribed": 3
+                "unsubscribed": 3,
+                "queued" : 0,
+                "errored" : 0,
+                "alerts": 0,
+                "overwrites": 0
             }
+
+
+
+
 
 + Parameters
     + mid (required) ... MID for the account
