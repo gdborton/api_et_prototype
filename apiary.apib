@@ -202,7 +202,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
     [Account Events Hourly][]
 
 
-## Message Events [/message/{mid}/events{?fields,startDate,endDate}]
+## Message Events [/message/{id}/events{?fields,startDate,endDate}]
 A collection of all events that have occurred for an message, total.
 
 + Model (application/json)
@@ -230,7 +230,7 @@ A collection of all events that have occurred for an message, total.
 
 
 + Parameters
-    + mid (required) ... MID for the message
+    + id (required) ... id for the message
     + fields (optional, string) ... event fields requested, default is all fields
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
@@ -239,7 +239,7 @@ A collection of all events that have occurred for an message, total.
 + Response 200
     [Message Events][]
 
-## Message Events Daily [/message/{mid}/events/daily{?fields,startDate,endDate}]
+## Message Events Daily [/message/{id}/events/daily{?fields,startDate,endDate}]
 A collection of events that have occurred for an message, rolled into 24 hour chunks
 
 + Model (application/json)
@@ -293,7 +293,7 @@ A collection of events that have occurred for an message, rolled into 24 hour ch
             }
 
 + Parameters
-    + mid (required) ... MID for the message
+    + id (required) ... id for the message
     + fields (optional, string) ... event fields requested, default is all fields
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
@@ -302,7 +302,7 @@ A collection of events that have occurred for an message, rolled into 24 hour ch
 + Response 200
     [Message Events Daily][]
 
-## Message Events Hourly [/message/{mid}/events/hourly{?fields,startDate,endDate}]
+## Message Events Hourly [/message/{id}/events/hourly{?fields,startDate,endDate}]
 + Model (application/json)
     JSON Representation of events that have occurred on an Message, rolled up hourly.
     + Body
@@ -353,7 +353,7 @@ A collection of events that have occurred for an message, rolled into 24 hour ch
             }
 
 + Parameters
-    + mid (required) ... MID for the message
+    + id (required) ... id for the message
     + fields (optional, string) ... event fields requested, default is all fields
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
