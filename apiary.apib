@@ -86,8 +86,9 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
     
             {
                 "_links": {
-                    "self": { "href": "/account/123/events/daily/{?fields,startDate,endDate}" },
-                    "parent": { "href": /account/123/events/" }
+                    "hourly": { "href": "/account/123/events/hourly{?fields,startDate,endDate}"},
+                    "self": { "href": "/account/123/events/daily{?fields,startDate,endDate}" },
+                    "parent": { "href": /account/123/events" }
                 },
                 "id": "123",
                 "Events": [
@@ -147,8 +148,9 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
     
             {
                 "_links": {
-                    "self": { "href": "/account/123/events" },
-                    "parent": { "href": /account/123" }
+                    "daily": { "href": "/account/123/events/daily{?fields,startDate,endDate}"},
+                    "self": { "href": "/account/123/events/hourly{?fields,startDate,endDate}" },
+                    "parent": { "href": /account/123/events" }
                 },
                 "Events": [
                     {
@@ -248,8 +250,9 @@ A collection of events that have occurred for an message, rolled into 24 hour ch
     
             {
                 "_links": {
-                    "self": { "href": "/message/123/events/daily/{?fields,startDate,endDate}" },
-                    "parent": { "href": /message/123/events/" }
+                    "hourly": { "href": "/message/123/events/hourly{?fields,startDate,endDate}"},
+                    "self": { "href": "/message/123/events/daily{?fields,startDate,endDate}" },
+                    "parent": { "href": /message/123/events" }
                 },
                 "id": "123",
                 "Events": [
@@ -309,8 +312,9 @@ A collection of events that have occurred for an message, rolled into 24 hour ch
     
             {
                 "_links": {
-                    "self": { "href": "/message/123/events" },
-                    "parent": { "href": /message/123" }
+                    "daily": { "href": "/message/123/events/daily{?fields,startDate,endDate}"},
+                    "self": { "href": "/message/123/events/hourly{?fields,startDate,endDate}" },
+                    "parent": { "href": /message/123/events" }
                 },
                 "Events": [
                     {
