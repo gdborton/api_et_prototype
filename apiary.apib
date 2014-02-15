@@ -1,46 +1,78 @@
 FORMAT: 1A
 HOST: http://www.exacttargetapis.com/
 
-# Events APIs
-Method for retrieving Event information from a single job.
+# ExactTarget API Specifications - Prototype
+Prototype of ExactTarget APIs.
 
-# Group Events
+# Group Account Resource
 
-## Jobs Events [/jobs/{id}/events{?fields}]
-A single Event object belonging to a job.
+## Account Messages Transactional Collection [/accounts/{mid}/messages/transactional{?pageSize,count}]
 
-+ Parameters
-    + id (required, number, `123`) ... Numeric `id` of the Job to retrieve events from
-    + fields (optional, string, `sent,delivered,bouncesHard,bouncesSoft,bouncesBLocked,uniqueOpened,uniqueClicked,unsubscribed` ) ... Comma Separated string of event fields to be returned. 
+Information about Messages sent by an account.
 
 + Model (application/json)
-    JSON Representation of events that have occurred on a job.
+    JSON Representation of Messages that have been created by an Account
     + Body
     
             {
                 "_links": {
-                    "self": { "href": "/jobs/123/events" },
-                    "parent": { "href": "/jobs/123" }
+                    "self": { "href": "/accounts/{id}/messages/transactional" },
+                    "parent": { "href": "/accounts/{id}" }
+                    "next" : { "href": "/accounts/{id}/messages/transactional?pageSize=25&count=0" }
+                    "prev" : { "href": "/accounts/{id}/messages/transactional?pageSize=25&count=50" }
+                    "search" : { "verb" : "POST", "href" : "/account/123/messages/transactional", "parameters" : "query" }
                 },
-                "id": "123",
-                "total": {
-                    "toSend": 18714,
-                    "delivered": { "total" : 18500, "percent" : 98.85 },
-                    "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
-                    "opened" : { "unique" : 18333 },
-                    "clicked" : { "unique": 18222 },
-                    "unsubscribed": { "total" : 3, "percent" : 0.000 },
-                    "pending" : { "total" : 200, "percent" : 0.011 } 
-                    "inProgress" : { "total" : 100, "percent" : 0.005 },
-                    "sent" : { "total" : 18414, "percent" : 98.397 }
-                }
+                "id": "{id}",
+                "count": 134, 
+                "active" : 32,
+                "paused" : 7,
+                "stopped" : 12,
+                "deleted" : 38,
+                "new" : 14,
+                "page": 2,
+                "pageSize": 25,
+                "messages" : [
+                  { "id" : 25, "message_data" : "..." },
+                  { "id" : 26, "message_data" : "..." },
+                  { "id" : 27, "message_data" : "..." }
+                  { "id" : 28, "message_data" : "..." },
+                  { "id" : 29, "message_data" : "..." },
+                  { "id" : 30, "message_data" : "..." },
+                  { "id" : 31, "message_data" : "..." },
+                  { "id" : 32, "message_data" : "..." },
+                  { "id" : 33, "message_data" : "..." },
+                  { "id" : 34, "message_data" : "..." },
+                  { "id" : 35, "message_data" : "..." },
+                  { "id" : 36, "message_data" : "..." },
+                  { "id" : 37, "message_data" : "..." }
+                  { "id" : 38, "message_data" : "..." },
+                  { "id" : 39, "message_data" : "..." }
+                  { "id" : 40, "message_data" : "..." },
+                  { "id" : 41, "message_data" : "..." }
+                  { "id" : 42, "message_data" : "..." },
+                  { "id" : 43, "message_data" : "..." }
+                  { "id" : 44, "message_data" : "..." },
+                  { "id" : 45, "message_data" : "..." }
+                  { "id" : 46, "message_data" : "..." },
+                  { "id" : 47, "message_data" : "..." }
+                  { "id" : 48, "message_data" : "..." },
+                  { "id" : 49, "message_data" : "..." }
+                ]
+                
             }
 
-### Retrieve Events for a job [GET]
-+ Response 200
-    [Jobs Events][]
 
-## Account Events [/account/{mid}/events{?fields,startDate,endDate}]
++ Parameters
+    + mid (required) ... MID for the account
+    + pageSize (optional, number, `100`) ... number of records to return, default 100 
+    + count (optional, number `300`) ... offset of records to return
+    
+### Retrieve Transactional Messages for an Account [GET]
+
++ Response 200
+    [Account Messages Transactional Collection][]
+
+## Account Events [/accounts/{mid}/events{?fields,startDate,endDate}]
 A collection of all events that have occurred for an account, total.
 
 + Model (application/json)
@@ -49,12 +81,12 @@ A collection of all events that have occurred for an account, total.
     
             {
                 "_links": {
-                    "daily": { "href": "/account/123/events/daily{?fields,startDate,endDate}"},
-                    "hourly": { "href": "/account/123/events/hourly{?fields,startDate,endDate}"},
-                    "self": { "href": "/account/123/events{?fields,startDate,endDate}" },
-                    "parent": { "href": "/account/123" }
+                    "daily": { "href": "/accounts/{id}/events/daily{?fields,startDate,endDate}"},
+                    "hourly": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}"},
+                    "self": { "href": "/accounts/{id}/events{?fields,startDate,endDate}" },
+                    "parent": { "href": "/accounts/123" }
                 },
-                "id": "123",
+                "id": "{id}",
                 "toSend": 18714,
                 "delivered": { "total" : 18500, "percent" : 98.85 },
                 "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
@@ -77,7 +109,7 @@ A collection of all events that have occurred for an account, total.
 + Response 200
     [Account Events][]
 
-## Account Events Daily [/account/{mid}/events/daily{?fields,startDate,endDate}]
+## Account Events Daily [/accounts/{mid}/events/daily{?fields,startDate,endDate}]
 A collection of events that have occurred for an account, rolled into 24 hour chunks
 
 + Model (application/json)
@@ -86,11 +118,11 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
     
             {
                 "_links": {
-                    "hourly": { "href": "/account/123/events/hourly{?fields,startDate,endDate}"},
-                    "self": { "href": "/account/123/events/daily{?fields,startDate,endDate}" },
-                    "parent": { "href": "/account/123/events" }
+                    "hourly": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}"},
+                    "self": { "href": "/accounts/{id}/events/daily{?fields,startDate,endDate}" },
+                    "parent": { "href": "/accounts/{id}/events" }
                 },
-                "id": "123",
+                "id": "{id}",
                 "Events": [
                     {
                         "date" : "2014-02-06T07:06:00Z",
@@ -141,16 +173,16 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Response 200
     [Account Events Daily][]
 
-## Account Events Hourly [/account/{mid}/events/hourly{?fields,startDate,endDate}]
+## Account Events Hourly [/accounts/{mid}/events/hourly{?fields,startDate,endDate}]
 + Model (application/json)
     JSON Representation of events that have occurred on an Account, rolled up hourly.
     + Body
     
             {
                 "_links": {
-                    "daily": { "href": "/account/123/events/daily{?fields,startDate,endDate}"},
-                    "self": { "href": "/account/123/events/hourly{?fields,startDate,endDate}" },
-                    "parent": { "href": "/account/123/events" }
+                    "daily": { "href": "/accounts/{id}/events/daily{?fields,startDate,endDate}"},
+                    "self": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}" },
+                    "parent": { "href": "/accounts/{id}/events" }
                 },
                 "Events": [
                     {
@@ -202,6 +234,45 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 
 + Response 200
     [Account Events Hourly][]
+
+
+# Group Jobs resource
+
+## Jobs Events [/jobs/{id}/events{?fields}]
+A single Event object belonging to a job.
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Job to retrieve events from
+    + fields (optional, string, `sent,delivered,bouncesHard,bouncesSoft,bouncesBLocked,uniqueOpened,uniqueClicked,unsubscribed` ) ... Comma Separated string of event fields to be returned. 
+
++ Model (application/json)
+    JSON Representation of events that have occurred on a job.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/jobs/123/events" },
+                    "parent": { "href": "/jobs/123" }
+                },
+                "id": "123",
+                "total": {
+                    "toSend": 18714,
+                    "delivered": { "total" : 18500, "percent" : 98.85 },
+                    "bounces" : { "total" : 164, "hard" : 14, "soft" : 100, "blocked" : 50 },
+                    "opened" : { "unique" : 18333 },
+                    "clicked" : { "unique": 18222 },
+                    "unsubscribed": { "total" : 3, "percent" : 0.000 },
+                    "pending" : { "total" : 200, "percent" : 0.011 } 
+                    "inProgress" : { "total" : 100, "percent" : 0.005 },
+                    "sent" : { "total" : 18414, "percent" : 98.397 }
+                }
+            }
+
+### Retrieve Events for a job [GET]
++ Response 200
+    [Jobs Events][]
+
+# Group Message Resource
 
 
 ## Message Events [/message/{id}/events{?fields,startDate,endDate}]
