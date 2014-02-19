@@ -439,22 +439,40 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
     [Message Events Hourly][]
 
 ## Message Email Preview [/messages/{id}/preview]
-An email preview for a message job
+Email preview for message jobs
 
 + Parameters
     + id (required) ... id for the message.  Could be a Triggered Send or an Email Send Definition id.
 
 + Model (application/json)
-    JSON Representation of the email preview for the most recent job associated to a message
+    JSON Representation of the email preview for all jobs associated to a message
     + Body
     
             {
                 "id": "{id}",
-                "encodedHtml": "",
-                "encodedText": ""
+                "Previews": [
+                    {
+                        "jobId": "654231",
+                        "mostRecent": 1,
+                        "encodedHtml": "",
+                        "encodedText": ""
+                    },
+                    {
+                        "jobId": "45642",
+                        "mostRecent": 0,
+                        "encodedHtml": "",
+                        "encodedText": ""
+                    },
+                    {
+                        "jobId": "5642",
+                        "mostRecent": 0,
+                        "encodedHtml": "",
+                        "encodedText": ""
+                    }
+                ]
             }
 
-### Retrieve Events for a Message with daily precision [GET]
+### Retrieve Email Previews for a Message [GET]
 + Response 200
     [Message Email Preview][]
 
