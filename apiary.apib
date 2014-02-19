@@ -6,7 +6,7 @@ Prototype of ExactTarget APIs.
 
 # Group Account Resource
 
-## Account Messages Transactional Collection [/accounts/{mid}/messages/transactional{?pageSize,count}]
+## Account Messages Transactional Collection [/accounts/{memberId}/messages/transactional{?pageSize,count}]
 
 Information about Messages sent by an account.
 
@@ -63,7 +63,7 @@ Information about Messages sent by an account.
 
 
 + Parameters
-    + mid (required) ... MID for the account
+    + memberId (required) ... MID for the account
     + pageSize (optional, number, `100`) ... number of records to return, default 100 
     + count (optional, number `300`) ... offset of records to return
     
@@ -72,7 +72,7 @@ Information about Messages sent by an account.
 + Response 200
     [Account Messages Transactional Collection][]
 
-## Account Events [/accounts/{mid}/events{?fields,startDate,endDate}]
+## Account Events [/accounts/{memberId}/events{?fields,startDate,endDate}]
 A collection of all events that have occurred for an account, total.
 
 + Model (application/json)
@@ -100,7 +100,7 @@ A collection of all events that have occurred for an account, total.
 
 
 + Parameters
-    + mid (required) ... MID for the account
+    + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
@@ -109,7 +109,7 @@ A collection of all events that have occurred for an account, total.
 + Response 200
     [Account Events][]
 
-## Account Events Daily [/accounts/{mid}/events/daily{?fields,startDate,endDate}]
+## Account Events Daily [/accounts/{memberId}/events/daily{?fields,startDate,endDate}]
 A collection of events that have occurred for an account, rolled into 24 hour chunks
 
 + Model (application/json)
@@ -164,7 +164,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
             }
 
 + Parameters
-    + mid (required) ... MID for the account
+    + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
@@ -173,7 +173,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Response 200
     [Account Events Daily][]
 
-## Account Events Hourly [/accounts/{mid}/events/hourly{?fields,startDate,endDate}]
+## Account Events Hourly [/accounts/{memberId}/events/hourly{?fields,startDate,endDate}]
 + Model (application/json)
     JSON Representation of events that have occurred on an Account, rolled up hourly.
     + Body
@@ -225,7 +225,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
             }
 
 + Parameters
-    + mid (required) ... MID for the account
+    + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
