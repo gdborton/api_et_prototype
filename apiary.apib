@@ -272,14 +272,14 @@ A single Event object belonging to a job.
 + Response 200
     [Jobs Events][]
 
-## Jobs Counts [/jobs/counts{?status,startDate,endDate}]
+## Jobs Counts [/jobs/counts{?fields,startDate,endDate}]
 A total count of jobs for a given account for a given date range.
 
 + Parameters
-    + status =`all` (optional, string ) ... Comma Separated string of statuses to be returned.
+    + fields (optional, string ) ... Comma Separated string of event fields to be returned.
         + Values 
-            + `all` 
-            + `pending` 
+            + `total`
+            + `pending`
             + `processing`
             + `completed`
     + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from.  Depending on Precision, this may be rounded to the nearest Day or Hour.
@@ -290,10 +290,12 @@ A total count of jobs for a given account for a given date range.
     + Body
     
             {
-                "status": "all",
                 "startDate": "2014-02-04T03:00:00Z",
                 "endDate": "2014-02-10T03:00:00Z",
-                "total": 654248
+                "total": 654248,
+                "pending" : 234234,
+                "processing" : 23423,
+                "completed" : 234
             }
 
 ### Retrieve Job Counts [GET]
