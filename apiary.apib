@@ -505,3 +505,44 @@ Email preview for message jobs
 + Response 200
     [Message Email Preview][]
 
+## Retrieve Queued Transactions [/messages/transactional/{id}/queue]
+A collection of queued transactions for a paused transaction
+
++ Parameters
+    + id (required) ... id for the message.
+
++ Model (application/json)
+    JSON Representation for all queued transactions associated to a message
+    + Body
+    
+            {
+                "id": "{id}",
+                "Transactions": [
+                    {
+                        "jobId": "654231",
+                        "dateQueued": "2014-02-04T03:00:00Z",
+                        "Member":
+                        {
+                            "memberId": "654",
+                            "listId": "8435"
+                            "fullName": "Erin Smith"
+                            "emailAddress": "esmith@foo.com"
+                        }
+                    },
+                    {
+                        "jobId": "654231",
+                        "dateQueued": "2014-02-04T03:00:00Z",
+                        "Member":
+                        {
+                            "memberId": "659",
+                            "listId": "8435"
+                            "fullName": "Bob Jones"
+                            "emailAddress": "bjones@foo.com"
+                        }
+                    }
+                ]
+            }
+
+### Retrieve Queued Transactions for a Message [GET]
++ Response 200
+    [Retrieve Queued Transactions][]
