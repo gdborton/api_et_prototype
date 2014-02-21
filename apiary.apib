@@ -8,7 +8,7 @@ Prototype of ExactTarget APIs.
 
 ## Account Messages Transactional Collection [/accounts/{memberId}/messages/transactional{?pageSize,count}]
 
-Information about Messages sent by an account.
+Collection of Messages sent by an account.
 
 + Model (application/json)
     JSON Representation of Messages that have been created by an Account
@@ -16,19 +16,15 @@ Information about Messages sent by an account.
     
             {
                 "_links": {
-                    "self": { "href": "/accounts/{id}/messages/transactional" },
-                    "parent": { "href": "/accounts/{id}" },
-                    "next" : { "href": "/accounts/{id}/messages/transactional?pageSize=25&count=0" },
-                    "prev" : { "href": "/accounts/{id}/messages/transactional?pageSize=25&count=50" },
-                    "search" : { "verb" : "POST", "href" : "/account/{id}/messages/transactional", "parameters" : "query" }
+                    "self": { "href": "/accounts/{memberId}/messages/transactional" },
+                    "parent": { "href": "/accounts/{memberId}" },
+                    "next" : { "href": "/accounts/{memberId}/messages/transactional?pageSize=25&count=0" },
+                    "prev" : { "href": "/accounts/{memberId}/messages/transactional?pageSize=25&count=50" },
+                    "status" : { "href": "/accounts/{memberId}/messages/transactional/status" },
+                    "search" : { "verb" : "POST", "href" : "/account/{memberId}/messages/transactional", "parameters" : "query" }
                 },
-                "id": "{id}",
+                "memberId": "{memberId}",
                 "count": 134, 
-                "active" : 32,
-                "paused" : 7,
-                "stopped" : 12,
-                "deleted" : 38,
-                "new" : 14,
                 "page": 2,
                 "pageSize": 25,
                 "messages" : [
@@ -61,6 +57,37 @@ Information about Messages sent by an account.
                 
             }
 
++ Parameters
+    + memberId (required) ... MID for the account
+    + pageSize (optional, number, `100`) ... number of records to return, default 100 
+    + count (optional, number `300`) ... offset of records to return
+    
+### Retrieve Transactional Messages for an Account [GET]
+
++ Response 200
+    [Account Messages Transactional Collection][]
+
+## Account Messages Transactional Status [/accounts/{memberId}/messages/transactional/status]
+
+Information about Transactional Messages sent by an account.
+
++ Model (application/json)
+    JSON Representation of Statuses of Transactional Messages that have been created by an Account
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/accounts/{memberId}/messages/transactional/status" },
+                    "parent": { "href": "/accounts/{memberId}/messages/transactional" },
+                },
+                "memberId": "{memberId}",
+                "total": 134, 
+                "active" : 32,
+                "paused" : 7,
+                "stopped" : 12,
+                "deleted" : 38,
+                "new" : 14
+            }
 
 + Parameters
     + memberId (required) ... MID for the account
@@ -272,8 +299,8 @@ A single Event object belonging to a job.
 + Response 200
     [Jobs Events][]
 
-## Jobs Counts [/jobs/counts{?fields,startDate,endDate}]
-A total count of jobs for a given account for a given date range.
+## Jobs Status [/jobs/status{?fields,startDate,endDate}]
+Total counts of jobs for a given account for a given date range, grouped by status
 
 + Parameters
     + fields (optional, string ) ... Comma Separated string of event fields to be returned.
