@@ -535,7 +535,7 @@ Email preview for message jobs
     [Message Email Preview][]
 
 ## Retrieve Queued Transactions [/messages/{id}/queue]
-A collection of queued transactions for a paused transaction
+A collection of queued transactions for a paused message
 
 + Parameters
     + id (required) ... id for the message.
@@ -549,6 +549,8 @@ A collection of queued transactions for a paused transaction
                 "Transactions": [
                     {
                         "jobId": "654231",
+                        "tssId": "8E844912-1429-E211-B468-0022642D9886",
+                        "tssrId": "0993DAEE-2190-E311-BB14-00237D5401CE",
                         "dateQueued": "2014-02-04T03:00:00Z",
                         "Member":
                         {
@@ -560,6 +562,8 @@ A collection of queued transactions for a paused transaction
                     },
                     {
                         "jobId": "654231",
+                        "tssId": "8E844912-1429-E211-B468-0022642D9886",
+                        "tssrId": "89844912-1429-E211-B468-0022642D9886",
                         "dateQueued": "2014-02-04T03:00:00Z",
                         "Member":
                         {
@@ -575,3 +579,14 @@ A collection of queued transactions for a paused transaction
 ### Retrieve Queued Transactions for a Message [GET]
 + Response 200
     [Retrieve Queued Transactions][]
+
+## Delete Queued Transactions [/messages/{id}/queue/{tssid}/{tssrId}]
+Delete a queued transaction from a paused message
+
++ Parameters
+    + id (required) ... id for the message.
+    + tssid (required) ... id for the triggered send subscriber.
+    + tssrId (required) ... id for the triggered send subscriber request.
+
+### Delete Queued Transaction for a Message [DELETE]
++ Response 204
