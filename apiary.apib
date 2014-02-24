@@ -408,6 +408,25 @@ Create a new TriggeredSendDefinition
 + Response 200
     [Create Triggered Message][]
 
+## Send a Triggered Message [/messages/{id}/send]
+Send a message using a pre-existing triggered send definition
+
+
+
+### Send a triggered send definition message [PUT]
++ Request (application/json)
+
+        {
+            "customerKey": "Send Customer Key",
+            "emailAddress" : "an@email.com",
+            "subscriberKey" : "an@email.com",
+            "attributes" : [
+                /* any attributes */
+            ]
+        }
+        
++ Response 202
+
 
 
 ## Message Events [/messages/{id}/events{?fields,startDate,endDate}]
