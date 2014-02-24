@@ -18,8 +18,8 @@ Collection of Messages sent by an account.
                 "_links": {
                     "self": { "href": "/accounts/{memberId}/messages/transactional" },
                     "parent": { "href": "/accounts/{memberId}" },
-                    "next" : { "href": "/accounts/{memberId}/messages/transactional?pageSize=25&count=0" },
-                    "prev" : { "href": "/accounts/{memberId}/messages/transactional?pageSize=25&count=50" },
+                    "next" : { "href": "/accounts/{memberId}/messages/transactional?pageSize=25&page=3" },
+                    "prev" : { "href": "/accounts/{memberId}/messages/transactional?pageSize=25&page=1" },
                     "status" : { "href": "/accounts/{memberId}/messages/transactional/status" },
                     "search" : { "verb" : "POST", "href" : "/account/{memberId}/messages/transactional", "parameters" : "query" }
                 },
@@ -450,6 +450,127 @@ Create a new TriggeredSendDefinition
 
 ## Search for Triggered Messages [/messages/triggered{?PartnerKey,CreatedDate,ModifiedDate,ClientId,CustomerKey,EmailId,ListId,Name,Description,TriggeredSendType,TriggeredSendStatus,HeaderContentAreaId,FooterContentAreaId,SendClassificationId,SendClassificationCustomerKey,SenderProfileCustomerKey,SenderProfileId,DeliveryProfileCustomerKey,DeliveryProfileId,PrivateDomainId,PrivateIPId,AutoAddSubscribers,AutoUpdateSubscribers,BatchInterval,FromName,FromAddress,BccEmail,EmailSubject,DynamicEmailSubject,IsMultipart,IsWrapped,TestEmailAddr,AllowedSlots,NewSlotTrigger,SendLimit,SendWindowOpen,SendWindowClose,SuppressTracking,Keyword,ListPartnerKey,EmailPartnerKey,SendClassificationPartnerKey,PrivateDomainPartnerKey,PrivateIPPartnerKey,ClientPartnerClientKey,IsPlatformObject,CategoryID}]
 Search for triggeredSendDefinitions 
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/messages/triggered{?PartnerKey,CreatedDate,ModifiedDate,ClientId,CustomerKey,EmailId,ListId,Name,Description,TriggeredSendType,TriggeredSendStatus,HeaderContentAreaId,FooterContentAreaId,SendClassificationId,SendClassificationCustomerKey,SenderProfileCustomerKey,SenderProfileId,DeliveryProfileCustomerKey,DeliveryProfileId,PrivateDomainId,PrivateIPId,AutoAddSubscribers,AutoUpdateSubscribers,BatchInterval,FromName,FromAddress,BccEmail,EmailSubject,DynamicEmailSubject,IsMultipart,IsWrapped,TestEmailAddr,AllowedSlots,NewSlotTrigger,SendLimit,SendWindowOpen,SendWindowClose,SuppressTracking,Keyword,ListPartnerKey,EmailPartnerKey,SendClassificationPartnerKey,PrivateDomainPartnerKey,PrivateIPPartnerKey,ClientPartnerClientKey,IsPlatformObject,CategoryID}"},
+                    "parent": { "href": "/messages" },
+                    "next" : { "href": "/messages/triggered{?pageSize=25&page=3&...},
+                    "prev" : { "href": "/messages/triggered{?pageSize=25&page=1&...}
+                },
+                "count" : 3,
+                "page": 2,
+                "pageSize": 3,                
+                "triggeredSendDefinitions" : [
+                    {
+                        "id" : 9223372036854775807, 
+                        "name" : "TSD Name",
+                        "description" : "TSD Description",
+                        "emailId" : 9223372036854775807,
+                        "customerKey" : "customerKey123",
+                        "listId" : 9223372036854775807,
+                        "triggeredSendStatus" : "New", /*Inactive, Active, Canceled*/
+                        "sendClassification" : { 
+                            "customerKey" : "sc CustomerKey123", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                        },
+                        "senderProfile" : { 
+                            "customerKey" : "sp CustomerKey", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
+                        },
+                        "deliveryProfile" : { 
+                            "customerKey" : "dp CustomerKey", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
+                        },
+                        "autoAddSubscribers" : true, /*bool*/
+                        "autoUpdateSubscribers" : true, /*bool*/
+                        "ccEmail" : "an@email.com",
+                        "bccEmail" : "an@email.com",
+                        "emailSubject" : "The email subject",
+                        "isMultipart" : true,
+                        "isWrapped" : true,
+                        "suppressTracking" : true,
+                        "categoryId" : 2147483683,
+                        "campaignId" : 9223372036854775807, /* doesn't exist in current SDK */
+                        "refreshContent" : true,
+                        "exclusionFilter" : "ampScript Goes Here",
+                        "priority" : "Low", /* Medium, High */
+                        "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
+                    },
+                    {
+                        "id" : 9223372036854775807, 
+                        "name" : "TSD Name",
+                        "description" : "TSD Description",
+                        "emailId" : 9223372036854775807,
+                        "customerKey" : "customerKey123",
+                        "listId" : 9223372036854775807,
+                        "triggeredSendStatus" : "New", /*Inactive, Active, Canceled*/
+                        "sendClassification" : { 
+                            "customerKey" : "sc CustomerKey123", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                        },
+                        "senderProfile" : { 
+                            "customerKey" : "sp CustomerKey", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
+                        },
+                        "deliveryProfile" : { 
+                            "customerKey" : "dp CustomerKey", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
+                        },
+                        "autoAddSubscribers" : true, /*bool*/
+                        "autoUpdateSubscribers" : true, /*bool*/
+                        "ccEmail" : "an@email.com",
+                        "bccEmail" : "an@email.com",
+                        "emailSubject" : "The email subject",
+                        "isMultipart" : true,
+                        "isWrapped" : true,
+                        "suppressTracking" : true,
+                        "categoryId" : 2147483683,
+                        "campaignId" : 9223372036854775807, /* doesn't exist in current SDK */
+                        "refreshContent" : true,
+                        "exclusionFilter" : "ampScript Goes Here",
+                        "priority" : "Low", /* Medium, High */
+                        "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
+                    },
+                    {
+                        "id" : 9223372036854775807, 
+                        "name" : "TSD Name",
+                        "description" : "TSD Description",
+                        "emailId" : 9223372036854775807,
+                        "customerKey" : "customerKey123",
+                        "listId" : 9223372036854775807,
+                        "triggeredSendStatus" : "New", /*Inactive, Active, Canceled*/
+                        "sendClassification" : { 
+                            "customerKey" : "sc CustomerKey123", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                        },
+                        "senderProfile" : { 
+                            "customerKey" : "sp CustomerKey", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
+                        },
+                        "deliveryProfile" : { 
+                            "customerKey" : "dp CustomerKey", 
+                            "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
+                        },
+                        "autoAddSubscribers" : true, /*bool*/
+                        "autoUpdateSubscribers" : true, /*bool*/
+                        "ccEmail" : "an@email.com",
+                        "bccEmail" : "an@email.com",
+                        "emailSubject" : "The email subject",
+                        "isMultipart" : true,
+                        "isWrapped" : true,
+                        "suppressTracking" : true,
+                        "categoryId" : 2147483683,
+                        "campaignId" : 9223372036854775807, /* doesn't exist in current SDK */
+                        "refreshContent" : true,
+                        "exclusionFilter" : "ampScript Goes Here",
+                        "priority" : "Low", /* Medium, High */
+                        "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
+                    }                    
+                    
+                ]
+            }
 
 + Parameters
     + PartnerKey (optional, string) ... Foo
