@@ -338,8 +338,31 @@ A single Event object belonging to a job.
 
 # Group Message Resource
 
+## Message Root [/messages/{id}]
+The Message Resource
 
-## Message Events [/message/{id}/events{?fields,startDate,endDate}]
++ Model (application/json)
+    JSON Representation of events that have occurred on a Message, rolled up daily
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/messages/{id}" },
+                    "parent": { "href": "/" }
+                },
+                "id": "{id}"
+            }
+
+
++ Parameters
+    + id (required) ... id for the message
+
+### Retrieve a Message [GET]
++ Response 200
+    [Message Root][]    
+
+
+## Message Events [/messages/{id}/events{?fields,startDate,endDate}]
 A collection of all events that have occurred for a message, total.
 
 + Model (application/json)
@@ -376,7 +399,7 @@ A collection of all events that have occurred for a message, total.
 + Response 200
     [Message Events][]
 
-## Message Events Daily [/message/{id}/events/daily{?fields,startDate,endDate}]
+## Message Events Daily [/messages/{id}/events/daily{?fields,startDate,endDate}]
 A collection of events that have occurred for a message, rolled into 24 hour chunks
 
 + Model (application/json)
@@ -440,7 +463,7 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
 + Response 200
     [Message Events Daily][]
 
-## Message Events Hourly [/message/{id}/events/hourly{?fields,startDate,endDate}]
+## Message Events Hourly [/messages/{id}/events/hourly{?fields,startDate,endDate}]
 + Model (application/json)
     JSON Representation of events that have occurred on a Message, rolled up hourly.
     + Body
