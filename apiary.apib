@@ -448,7 +448,7 @@ Create a new TriggeredSendDefinition
 + Response 200
     [Create Triggered Message][]
 
-## Search for Triggered Messages [/messages/triggered{?fields}]
+## Search for Triggered Messages [/messages/triggered{?fields,filters}]
 Search for triggeredSendDefinitions 
 
 + Model
@@ -574,7 +574,7 @@ Search for triggeredSendDefinitions
             }
 
 + Parameters
-    + fields (optional, string) ... Fields to be returned
+    + fields (optional, string) ... comma-separated collection of fields to be returned
         + Values
             + `PartnerKey`
             + `CreatedDate`
@@ -623,6 +623,11 @@ Search for triggeredSendDefinitions
             + `ClientPartnerClientKey`
             + `IsPlatformObject`
             + `CategoryID`
+    + filters (optional, string) ... JSON Collection of filter objects to be used to filter results.  Must contain a TSD property, a Simple Operator, and a Value or DateValue.
+        + values
+            + `[{ "property" : "customerKey", "SimpleOperator" : "equals", "Value" : "customValue" }]`
+            + `[{ "property" : "customerKey", "SimpleOperator" : "equals", "DateValue" : "customValue" },{ "property" : "customerKey", "SimpleOperator" : "equals", "Value" : "customValue" }]`
+    
 
 
 
