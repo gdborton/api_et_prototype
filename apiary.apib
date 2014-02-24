@@ -361,6 +361,49 @@ The Message Resource
 + Response 200
     [Message Root][]    
 
+## Create Triggered Message [/messages/triggered]
+Create a new TriggeredSendDefinition
+
++ Model (application/json)
+    JSON Response when a TriggeredSendDefinition is created
+    + Body
+    
+            {
+                "id" : 9223372036854775807, 
+                "name" : "TSD Name",
+                "description" : "TSD Description",
+                "emailId" : 9223372036854775807,
+                "customerKey" : "customerKey123",
+                "listId" : 9223372036854775807,
+                "triggeredSendStatus" : "New", /*Inactive, Active, Canceled*/
+                "sendClassification" : { 
+                    "customerKey" : "sc CustomerKey123", 
+                    "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                },
+                "senderProfile" : { 
+                    "customerKey" : "sp CustomerKey", 
+                    "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
+                },
+                "deliveryProfile" : { 
+                    "customerKey" : "dp CustomerKey", 
+                    "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
+                },
+                "autoAddSubscribers" : true, /*bool*/
+                "autoUpdateSubscribers" : true, /*bool*/
+                "ccEmail" : "an@email.com",
+                "bccEmail" : "an@email.com",
+                "emailSubject" : "The email subject",
+                "isMultipart" : true,
+                "isWrapped" : true,
+                "suppressTracking" : true,
+                "categoryId" : 2147483683,
+                "refreshContent" : true,
+                "exclusionFilter" : "ampScript Goes Here",
+                "priority" : "Low", /* Medium, High */
+                "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
+            }
+
+
 
 ## Message Events [/messages/{id}/events{?fields,startDate,endDate}]
 A collection of all events that have occurred for a message, total.
