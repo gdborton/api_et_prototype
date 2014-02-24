@@ -448,6 +448,62 @@ Create a new TriggeredSendDefinition
 + Response 200
     [Create Triggered Message][]
 
+## Search for Triggered Messages [/messages/triggered{?PartnerKey,CreatedDate,ModifiedDate,ClientId,CustomerKey,EmailId,ListId,Name,Description,TriggeredSendType,TriggeredSendStatus,HeaderContentAreaId,FooterContentAreaId,SendClassificationId,SendClassificationCustomerKey,SenderProfileCustomerKey,SenderProfileId,DeliveryProfileCustomerKey,DeliveryProfileId,PrivateDomainId,PrivateIPId,AutoAddSubscribers,AutoUpdateSubscribers,BatchInterval,FromName,FromAddress,BccEmail,EmailSubject,DynamicEmailSubject,IsMultipart,IsWrapped,TestEmailAddr,AllowedSlots,NewSlotTrigger,SendLimit,SendWindowOpen,SendWindowClose,SuppressTracking,Keyword,ListPartnerKey,EmailPartnerKey,SendClassificationPartnerKey,PrivateDomainPartnerKey,PrivateIPPartnerKey,ClientPartnerClientKey,IsPlatformObject,CategoryID}]
+Search for triggeredSendDefinitions 
+
++ Parameters
+    + PartnerKey (optional, string) ... Foo
+    + CreatedDate (optional, string) ... Foo
+    + ModifiedDate (optional, string) ... Foo
+    + ClientId (optional, string) ... Foo
+    + CustomerKey (optional, string) ... Foo
+    + EmailId (optional, string) ... Foo
+    + ListId (optional, string) ... Foo
+    + Name (optional, string) ... Foo
+    + Description (optional, string) ... Foo
+    + TriggeredSendType (optional, string) ... Foo
+    + TriggeredSendStatus (optional, string) ... Foo
+    + HeaderContentAreaId (optional, string) ... Foo
+    + FooterContentAreaId (optional, string) ... Foo
+    + SendClassificationId (optional, string) ... Foo
+    + SendClassificationCustomerKey (optional, string) ... Foo
+    + SenderProfileCustomerKey (optional, string) ... Foo
+    + SenderProfileId (optional, string) ... Foo
+    + DeliveryProfileCustomerKey (optional, string) ... Foo
+    + DeliveryProfileId (optional, string) ... Foo
+    + PrivateDomainId (optional, string) ... Foo
+    + PrivateIPId (optional, string) ... Foo
+    + AutoAddSubscribers (optional, string) ... Foo
+    + AutoUpdateSubscribers (optional, string) ... Foo
+    + BatchInterval (optional, string) ... Foo
+    + FromName (optional, string) ... Foo
+    + FromAddress (optional, string) ... Foo
+    + BccEmail (optional, string) ... Foo
+    + EmailSubject (optional, string) ... Foo
+    + DynamicEmailSubject (optional, string) ... Foo
+    + IsMultipart (optional, string) ... Foo
+    + IsWrapped (optional, string) ... Foo
+    + TestEmailAddr (optional, string) ... Foo
+    + AllowedSlots (optional, string) ... Foo
+    + NewSlotTrigger (optional, string) ... Foo
+    + SendLimit (optional, string) ... Foo
+    + SendWindowOpen (optional, string) ... Foo
+    + SendWindowClose (optional, string) ... Foo
+    + SuppressTracking (optional, string) ... Foo
+    + Keyword (optional, string) ... Foo
+    + ListPartnerKey (optional, string) ... Foo
+    + EmailPartnerKey (optional, string) ... Foo
+    + SendClassificationPartnerKey (optional, string) ... Foo
+    + PrivateDomainPartnerKey (optional, string) ... Foo
+    + PrivateIPPartnerKey (optional, string) ... Foo
+    + ClientPartnerClientKey (optional, string) ... Foo
+    + IsPlatformObject (optional, string) ... Foo
+    + CategoryID (optional, string) ... Foo
+
+
+### Retrieve a collection of triggered send definition messages [GET]
++ Response 200
+
 ## Send a Triggered Message [/messages/{id}/send]
 Send a message using a pre-existing triggered send definition
 
