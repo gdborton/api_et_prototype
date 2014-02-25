@@ -819,11 +819,14 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
 + Response 200
     [Message Events Hourly][]
 
-## Message Email Preview [/messages/{id}/preview]
-Email preview for message jobs
+## Message Email Thumbnail [/messages/{id}/thumbnail{?width,height,subId}]
+Email thumbnail for message jobs
 
 + Parameters
     + id (required) ... id for the message.  Could be a Triggered Send or an Email Send Definition id.
+    + width (required) ... width of the image.
+    + height (required) ... height of the image.
+    + subId (optional) ... Subscriber ID. This would be used in the event that the consumer wants the resulting thumbnail to be customized for a particular subscriber
 
 + Model (application/json)
     JSON Representation of the email preview for all jobs associated to a message
@@ -831,31 +834,13 @@ Email preview for message jobs
     
             {
                 "id": "{id}",
-                "Previews": [
-                    {
-                        "jobId": "654231",
-                        "mostRecent": 1,
-                        "encodedHtml": "",
-                        "encodedText": ""
-                    },
-                    {
-                        "jobId": "45642",
-                        "mostRecent": 0,
-                        "encodedHtml": "",
-                        "encodedText": ""
-                    },
-                    {
-                        "jobId": "5642",
-                        "mostRecent": 0,
-                        "encodedHtml": "",
-                        "encodedText": ""
-                    }
-                ]
+                "img": "GQ8XQAYFAiEMfN0qD0COTgMX",
+                "contentType": "image/jpeg"
             }
 
-### Retrieve Email Previews for a Message [GET]
+### Retrieve Email Thumbnail for a Message [GET]
 + Response 200
-    [Message Email Preview][]
+    [Message Email Thumbnail][]
 
 ## Retrieve Queued Transactions [/messages/{id}/queue]
 A collection of queued transactions for a paused message
