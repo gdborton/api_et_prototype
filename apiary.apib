@@ -17,9 +17,9 @@ Definition of an Account resourc
             {
                 "accountType" : "EXACTTARGET",
                 "address" : "301 Brannan St., Suite 100, San Francisco, CA 94107",
-                "brandId" : 0, /* brand tags to use on an account - not sure what this isn't a collection */,
+                "brandId" : 0, 
                 "businessName" : "Business Name of an account's owner",
-                "children" : [ 1, 2, 3, 4], /* collection of accountIds that represent child accounts to this account */,
+                "children" : [ 1, 2, 3, 4], 
                 "city" : "San Francisco",
                 "client" : "<client-id>",
                 "country" : "United States",
@@ -46,6 +46,12 @@ Definition of an Account resourc
                 "timezoneId" : 87,
                 "zip" : "94107"
             }
+
+### Retrieve an Account [GET]
+
++ Response 200
+    [Account Object DRAFT][]
+
 
 ## Account Messages Transactional Collection [/accounts/{memberId}/messages/transactional{?pageSize,count}]
 
