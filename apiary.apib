@@ -6,6 +6,47 @@ Prototype of ExactTarget APIs.
 
 # Group Account Resource
 
+## Account Object DRAFT [/accounts/{id}]
+
+Definition of an Account resourc
+
++ Model (application/json)
+    JSON Representation of a single Account resource. Based on http://help.exacttarget.com/en/technical_library/web_service_guide/objects/account/  
+    + Body
+    
+            {
+                "accountType" : "EXACTTARGET",
+                "address" : "301 Brannan St., Suite 100, San Francisco, CA 94107",
+                "brandId" : 0, /* brand tags to use on an account - not sure what this isn't a collection */,
+                "businessName" : "Business Name of an account's owner",
+                "children" : [ 1, 2, 3, 4], /* collection of accountIds that represent child accounts to this account */,
+                "city" : "San Francisco",
+                "client" : "<client-id>",
+                "country" : "United States",
+                "createdDate" : "2014-02-27T22:14:38+00:00",
+                "deletedDate" : "2014-02-27T22:14:38+00:00",
+                "editionId" : 123,
+                "email" : "an@email.com",
+                "fax" : "415-555-5555",
+                "fromName" : "Sender's Name - Deprecated",
+                "id" : 123,
+                "inheritedAddress" : false,
+                "isActive" : 1,
+                "isTestAccount" : false,
+                 "localeCode" : "US",
+                "modifiedDate": "2014-02-27T22:14:38+00:00",
+                "name" : "A fake account",
+                "objectId" : "<guid>",
+                "orgId" : 323,
+                "ownerId" : 123,
+                "parentId" : 133,
+                "partnerKey" : "myPartnerKey",
+                "phone" : "415-555-5322",
+                "state" : "California",
+                "timezoneId" : 87,
+                "zip" : "94107"
+            }
+
 ## Account Messages Transactional Collection [/accounts/{memberId}/messages/transactional{?pageSize,count}]
 
 Collection of Messages sent by an account.
