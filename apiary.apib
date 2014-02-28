@@ -56,7 +56,7 @@ Definition of an Account resourc
 + Response 200
     [Account Object DRAFT][]
 
-## Account Send Limit Information [/accounts/{memberId}/sendlimits/current{?fields}]
+## Account Send Limit - Current [/accounts/{memberId}/sendlimits/current{?fields}]
 
 Definition of an Account's current Volume Capping information.  Only returns cycles that are "valid" for the current cycle.
 
@@ -115,7 +115,7 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
                 }
             }
 
-### Retrieve an Account's Send Limits [GET]
+### Retrieve an Account's Current Send Limits [GET]
 
 + Parameters
     + memberId (required) ... MID for the account
@@ -126,9 +126,9 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
             + `cycles`
             
 + Response 200
-    [Account Send Limit Information][]
+    [Account Send Limit - Current][]
 
-## Account Send Limit Cycle [/accounts/{memberId}/sendlimits/{cycleId}{?fields}]
+## Account Send Limit - Cycles - RUD [/accounts/{memberId}/sendlimits/{cycleId}{?fields}]
 Definition of a Send Limit Cycle
 
 + Model
@@ -160,7 +160,7 @@ Definition of a Send Limit Cycle
 ### Retrieve Cycle [GET]
 
 + Response 200
-[Account Send Limit Cycle][]
+[Account Send Limit - Cycles - RUD][]
 
 ### Update Cycle [PATCH]
 Automatically updates modifiedDate.  purchaseDate is read-only.
@@ -174,14 +174,14 @@ Automatically updates modifiedDate.  purchaseDate is read-only.
         }
 
 + Response 200
-[Account Send Limit Cycle][]
+[Account Send Limit - Cycles - RUD][]
 
 
 ### Delete Cycle [DELETE]
 
 + Response 204
 
-## Account Send Limit Information [/accounts/{memberId}/sendlimits]
+## Account Send Limit [/accounts/{memberId}/sendlimits]
 An Account's Send Limit Cycles
 
 + Parameters
@@ -199,7 +199,7 @@ An Account's Send Limit Cycles
         }
         
 + Response 200
-    [Account Send Limit Cycle][]
+[Account Send Limit - Cycles - RUD][]
 
 ### Get Send Limit Cycles Collection [GET]
 
