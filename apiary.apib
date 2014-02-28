@@ -8,7 +8,7 @@ Prototype of ExactTarget APIs.
 
 ## Account Object DRAFT [/accounts/{id,objectId}]
 
-Definition of an Account resourc
+Definition of an Account resource
 
 + Model (application/json)
     JSON Representation of a single Account resource. Based on http://help.exacttarget.com/en/technical_library/web_service_guide/objects/account/  
@@ -337,7 +337,7 @@ Information about Transactional Messages sent by an account.
 + Response 200
     [Account Messages Transactional Status][]
 
-## Account Jobs Status [/accounts/{memberId}/jobs/status{?fields,startDate,endDate}]
+## Account Jobs Status - v1 [/accounts/{memberId}/jobs/status{?fields,startDate,endDate}]
 Total counts of jobs for a given account for a given date range, grouped by status
 
 + Parameters
@@ -371,7 +371,52 @@ Total counts of jobs for a given account for a given date range, grouped by stat
 
 ### Retrieve Account Job Status [GET]
 + Response 200
-    [Account Jobs Status][]
+    [Account Jobs Status - v1][]
+
+## Account Jobs Status - v2 [/v2/accounts/{memberId}/jobs/status{?fields,startDate,endDate}]
+v2 - Total counts of jobs for a given account for a given date range, grouped by status
+
++ Parameters
+    + memberId (required) ... MID for the account
+    + fields (optional, string ) ... Comma Separated string of event fields to be returned.
+        + Values 
+            + `total`
+            + `pending`
+            + `processing`
+            + `completed`
+    + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from.  Depending on Precision, this may be rounded to the nearest Day or Hour.
+    + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+
++ Model (application/json)
+    JSON Representation of status of account jobs.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/accounts/{memberId}/jobs/status" },
+                    "parent": { "href": "/accounts/{memberId}/jobs" },
+                },
+                "memberId": "{memberId}",
+                "total": 100000,
+                "pending" : { 
+                    "count" : 2000,
+                    "percent" : 2.000
+                },
+                "processing" : { 
+                    "count" : 3000,
+                    "percent" : 3.000
+                },
+                "completed" : { 
+                    "count" : 95000,
+                    "percent" : 95.000
+                },
+                "startDate": "2014-02-04T03:00:00Z",
+                "endDate": "2014-02-10T03:00:00Z"
+            }
+
+### Retrieve Account Job Status [GET]
++ Response 200
+    [Account Jobs Status - v2][]
 
 
 ## Account Events [/accounts/{memberId}/events{?fields,startDate,endDate}]
@@ -923,6 +968,48 @@ A single Event object belonging to a job.
 ### Retrieve Events for a job [GET]
 + Response 200
     [Jobs Events][]
+
+## Jobs Status [/jobs/{id}/status{?fields}]
+Status information of a job for a given date range
+
++ Parameters
+    + id (required) ... id of the job
+    + fields (optional, string ) ... Comma Separated string of event fields to be returned.
+        + Values 
+            + `total`
+            + `pending`
+            + `processing`
+            + `completed`
+
++ Model (application/json)
+    JSON Representation of status of a job.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/jobs/{id}/status" },
+                    "parent": { "href": "/jobs/{id}" },
+                },
+                "id": "{id}",
+                "memberId": "{memberId}",
+                "total": 100000,
+                "pending" : { 
+                    "count" : 2000,
+                    "percent" : 2.000
+                },
+                "processing" : { 
+                    "count" : 3000,
+                    "percent" : 3.000
+                },
+                "completed" : { 
+                    "count" : 95000,
+                    "percent" : 95.000
+                }
+            }
+
+### Retrieve Account Job Status [GET]
++ Response 200
+    [Jobs Status][]
 
 
 # Group Message Resource
