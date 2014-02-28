@@ -141,6 +141,42 @@ Definition of an Account's Volume Capping information
 + Response 200
     [Account Send Limit Information][]
 
+## Account Send Limit Cycle [/accounts/{memberId}/sendlimits/{cycleId}{?fields}]
+Definition of a Send Limit Cycle
+
++ Model
+
+        {
+            "_links": {
+                "self": { "href": "/accounts/{memberId}/sendlimits/{cycleId}" },
+                "parent": { "href": "/accounts/{memberId}/sendlimits" }
+            },            
+            "id" : {cycleId},
+            "type" : "email",
+            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+            "expirationDate" : "2014-03-26T22:14:38+00:00",
+            "messages" : 5000
+        }
+        
++ Parameters
+    + memberId (required) ... MID for the account
+    + cycleId (required) ... id for the cycle
+    + fields (optional, string ) ... Comma Separated string of fields to be returned.
+        + Values 
+            + `id`
+            + `purchaseDate`
+            + `expirationDate`
+            + `messages`
+            + `type`
+
+### Retrieve Cycle [GET]
+
++ Response 200
+[Account Send Limit Cycle][]
+
+### Delete Cycle [DELETE]
+
++ Response 204
 
 
 ## Account Messages Transactional Collection [/accounts/{memberId}/messages/transactional{?pageSize,count}]
