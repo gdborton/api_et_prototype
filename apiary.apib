@@ -56,9 +56,9 @@ Definition of an Account resourc
 + Response 200
     [Account Object DRAFT][]
 
-## Account Send Limit Information [/accounts/{memberId}/sendlimits{?fields}]
+## Account Send Limit Information [/accounts/{memberId}/sendlimits/current{?fields}]
 
-Definition of an Account's Volume Capping information
+Definition of an Account's current Volume Capping information.  Only returns cycles that are "valid" for the current cycle.
 
 + Model (application/json)
     JSON Representation of an Account's Send Limits 
@@ -128,22 +128,6 @@ Definition of an Account's Volume Capping information
 + Response 200
     [Account Send Limit Information][]
 
-### Add Messages to Cycle [POST]
-
-+ Parameters
-    + memberId (required) ... MID for the account
-
-+ Request
-
-        {
-            "type" : "email",
-            "messages" : 5000,
-            "expirationDate" : "2014-03-26T22:14:38+00:00"
-        }
-        
-+ Response 200
-    [Account Send Limit Information][]
-
 ## Account Send Limit Cycle [/accounts/{memberId}/sendlimits/{cycleId}{?fields}]
 Definition of a Send Limit Cycle
 
@@ -196,6 +180,70 @@ Automatically updates modifiedDate.  purchaseDate is read-only.
 ### Delete Cycle [DELETE]
 
 + Response 204
+
+## Account Send Limit Information [/accounts/{memberId}/sendlimits]
+An Account's Send Limit Cycles
+
++ Parameters
+    + memberId (required) ... MID for the account
+
+
+### Add Messages to Send Limits - Create a Cycle [POST]
+
++ Request
+
+        {
+            "type" : "email",
+            "messages" : 5000,
+            "expirationDate" : "2014-03-26T22:14:38+00:00"
+        }
+        
++ Response 200
+    [Account Send Limit Cycle][]
+
+### Get Send Limit Cycles Collection [GET]
+
++ Response 200
+
+            {
+                "_links": {
+                    "self"   : { "href": "/accounts/{memberId}/sendlimits" },
+                    "parent" : { "href": "/accounts/{memberId}" },
+                    "next"   : { "href": "/accounts/{memberId}/sendlimits?pageSize=3&page=3" },
+                    "prev"   : { "href": "/accounts/{memberId}/sendlimits?pageSize=3&page=1" },
+                },         
+                "id" : {memberId},
+                "count" : 9,
+                "page" : 2,
+                "pageSize" : 3,
+                "cycles" : {
+                            "id" : 4,
+                            "type" : "email",
+                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-03-26T22:14:38+00:00",
+                            "messages" : 5000
+                        },
+                        {
+                            "id" : 5,
+                            "type" : "email",
+                            "purchaseDate" : "2014-03-15T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-04-14T22:14:38+00:00",
+                            "messages" : 5000
+                        },
+                        {
+                            "id" : 6,
+                            "type" : "sms",
+                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-03-26T22:14:38+00:00",
+                            "messages" : 5000
+                        }
+                    ]
+                }
+            }
+
 
 
 ## Account Messages Transactional Collection [/accounts/{memberId}/messages/transactional{?pageSize,count}]
