@@ -6,7 +6,7 @@ Prototype of ExactTarget APIs.
 
 # Group Account Resource
 
-## Account Object DRAFT [/accounts/{id}]
+## Account Object DRAFT [/accounts/{id,objectId}]
 
 Definition of an Account resourc
 
@@ -47,10 +47,79 @@ Definition of an Account resourc
                 "zip" : "94107"
             }
 
++ Parameters
+    + objectId (optional) ... objectId for the account, required if no id is specified
+    + id (required) ... id for the account, required if no objectId is specified
+
 ### Retrieve an Account [GET]
 
 + Response 200
     [Account Object DRAFT][]
+
+## Account Send Limit Information [/accounts/{memberId}/sendlimits{?fields}]
+
+Definition of an Account's Volume Capping information
+
++ Model (application/json)
+    JSON Representation of an Account's Send Limits 
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/accounts/{memberId}/sendlimits" },
+                    "parent": { "href": "/accounts/{memberId}" },
+                },         
+                "id" : {memberId},
+                "currentCycle" : {
+                    "email" : {
+                        "sent" : 6500,
+                        "remaining" : 3500,
+                        "total" : 10000,
+                        "cycleStartDate" : "2014-02-27T22:14:38+00:00",
+                        "cycleEndDate" : "2014-03-26T22:14:38+00:00"
+                    },
+                    "sms" : {
+                        "sent" : 2100,
+                        "remaining" : 2900,
+                        "total" : 5000,
+                        "cycleStartDate" : "2014-02-27T22:14:38+00:00",
+                        "cycleEndDate" : "2014-03-26T22:14:38+00:00"
+                    }
+                },
+                "cycles" : {
+                    "email" : [
+                        {
+                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-03-26T22:14:38+00:00",
+                            "messages" : 5000
+                        },
+                        {
+                            "purchaseDate" : "2014-03-15T22:14:38+00:00",
+                            "expirationDate" : "2014-04-14T22:14:38+00:00",
+                            "messages" : 5000
+                        }
+                    ],
+                    "sms" : [
+                        {
+                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-03-26T22:14:38+00:00",
+                            "messages" : 5000
+                        }
+                    ]
+                }
+            }
++ Parameters
+    + memberId (required) ... MID for the account
+    + fields (optional, string ) ... Comma Separated string of event fields to be returned.
+        + Values 
+            + `id`
+            + `currentCycle`
+            + `cycles`
+
+### Retrieve an Account's Send Limits [GET]
+
++ Response 200
+    [Account Send Limit Information][]
 
 
 ## Account Messages Transactional Collection [/accounts/{memberId}/messages/transactional{?pageSize,count}]
