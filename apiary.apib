@@ -307,7 +307,7 @@ Collection of Messages sent by an account.
 + Response 200
     [Account Messages Transactional Collection][]
 
-## Account Messages Transactional Status [/accounts/{memberId}/messages/transactional/status]
+## Account Messages Transactional Status [/accounts/{memberId}/messages/transactional/status{startDate,endDate}]
 
 Information about Transactional Messages sent by an account.
 
@@ -331,6 +331,8 @@ Information about Transactional Messages sent by an account.
 
 + Parameters
     + memberId (required) ... MID for the account
+    + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from.  Depending on Precision, this may be rounded to the nearest Day or Hour.
+    + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Transactional Messages for an Account [GET]
 
