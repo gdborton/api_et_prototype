@@ -307,38 +307,6 @@ Collection of Messages sent by an account.
 + Response 200
     [Account Messages Transactional Collection][]
 
-## Account Messages Transactional Status [/accounts/{memberId}/messages/transactional/status{startDate,endDate}]
-
-Information about Transactional Messages sent by an account.
-
-+ Model (application/json)
-    JSON Representation of Statuses of Transactional Messages that have been created by an Account
-    + Body
-    
-            {
-                "_links": {
-                    "self": { "href": "/accounts/{memberId}/messages/transactional/status" },
-                    "parent": { "href": "/accounts/{memberId}/messages/transactional" },
-                },
-                "memberId": "{memberId}",
-                "total": 134, 
-                "active" : 32,
-                "paused" : 7,
-                "stopped" : 12,
-                "deleted" : 38,
-                "new" : 14
-            }
-
-+ Parameters
-    + memberId (required) ... MID for the account
-    + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from.  Depending on Precision, this may be rounded to the nearest Day or Hour.
-    + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
-
-### Retrieve Transactional Messages for an Account [GET]
-
-+ Response 200
-    [Account Messages Transactional Status][]
-
 ## Account Jobs Status - v1 [/accounts/{memberId}/jobs/status{?fields,startDate,endDate}]
 Total counts of jobs for a given account for a given date range, grouped by status
 
@@ -1313,6 +1281,36 @@ Search for triggeredSendDefinitions
 ### Retrieve a collection of triggered send definition messages [GET]
 + Response 200
 [Search for Triggered Messages][]
+
+## Triggered Send Status [/messages/triggered/status{startDate,endDate}]
+
+Counts of triggered sends.
+
++ Model (application/json)
+    JSON Representation of Statuses of Triggered Sends
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/messages/triggered/status" },
+                    "parent": { "href": "/messages/triggered" },
+                },
+                "total": 134, 
+                "active" : 32,
+                "paused" : 7,
+                "stopped" : 12,
+                "deleted" : 38,
+                "new" : 14
+            }
+
++ Parameters
+    + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from.  Depending on Precision, this may be rounded to the nearest Day or Hour.
+    + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+
+### Retrieve Transactional Messages for an Account [GET]
+
++ Response 200
+    [Triggered Send Status][]
 
 ## Send a Triggered Message [/messages/{id}/send]
 Send a message using a pre-existing triggered send definition
