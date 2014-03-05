@@ -880,29 +880,17 @@ A single Event object belonging to a job.
                     "parent": { "href": "/jobs/{id}" }
                 },
                 "id": "{id}",
-                "status" : {
-                  "toSend": 18714, 
-                  "inProgress" : { 
-                    "total" : 100, 
-                    "percent" : 0.005 
-                  },
-                  "pending" : { 
-                    "total" : 200, 
-                    "percent" : 0.011 
-                  }
-                },
                 "sent" : { 
-                  "total" : 18500, 
-                  "percent" : 98.856 
+                  "total" : 18500 
                 },
                 "delivered": { 
-                  "total" : 18495, 
-                  "percent" : 98.830
+                  "total" : 18336, 
+                  "percent" : 99.114
                 },
                 "bounced" : { 
                   "total" : 164, 
                   "percent" : 0.009,
-                  "hard" : 14, 
+                  "hard" : 12, 
                   "soft" : 100, 
                   "blocked" : 50,
                   "technical" : 1,
@@ -910,28 +898,21 @@ A single Event object belonging to a job.
                 },
                 "opened" : { 
                   "unique" : {
-                    "total" : 18333,
-                    "percent" : 97.964
+                    "total" : 18133,
+                    "percent" : 98.731
                   },
-                  "total" : 18400
+                  "total" : 18200
                 },
                 "clicked" : { 
                   "unique" : {
-                    "total" : 18222,
-                    "percent" : 97.371
+                    "total" : 18022,
+                    "percent" : 98.288
                   },
                   "total" : 18300
                 },
                 "unsubscribed": { 
-                  "total" : 3, 
-                  "percent" : 0.001 
-                },
-                "apiErrors" : { 
-                  "total" : 0
-                },
-                "emailErrors" : { 
-                  "total" : 0, 
-                  "percent" : 0.000 
+                  "total" : 33, 
+                  "percent" : 0.002 
                 }
             }
 
@@ -1337,40 +1318,28 @@ Send a message using a pre-existing triggered send definition
 A collection of all events that have occurred for a message, total.
 
 + Model (application/json)
-    JSON Representation of events that have occurred on a Message, rolled up daily
+    JSON Representation of events that have occurred on a Message
     + Body
     
             {
                 "_links": {
-                    "daily": { "href": "/message/{id}/events/daily{?fields,startDate,endDate}"},
-                    "hourly": { "href": "/message/{id}/events/hourly{?fields,startDate,endDate}"},
-                    "self": { "href": "/message/{id}/events{?fields,startDate,endDate}" },
-                    "parent": { "href": "/message/{id}" }
+                    "daily": { "href": "/messages/{id}/events/daily{?fields,startDate,endDate}"},
+                    "hourly": { "href": "/messages/{id}/events/hourly{?fields,startDate,endDate}"},
+                    "self": { "href": "/messages/{id}/events{?fields,startDate,endDate}" },
+                    "parent": { "href": "/messages/{id}" }
                 },
                 "id": "{id}",
-                "status" : {
-                  "toSend": 18714, 
-                  "inProgress" : { 
-                    "total" : 100, 
-                    "percent" : 0.005 
-                  },
-                  "pending" : { 
-                    "total" : 200, 
-                    "percent" : 0.011 
-                  }
-                },
                 "sent" : { 
-                  "total" : 18500, 
-                  "percent" : 98.856 
+                  "total" : 18500 
                 },
                 "delivered": { 
-                  "total" : 18495, 
-                  "percent" : 98.830
+                  "total" : 18336, 
+                  "percent" : 99.114
                 },
                 "bounced" : { 
                   "total" : 164, 
                   "percent" : 0.009,
-                  "hard" : 14, 
+                  "hard" : 12, 
                   "soft" : 100, 
                   "blocked" : 50,
                   "technical" : 1,
@@ -1378,31 +1347,23 @@ A collection of all events that have occurred for a message, total.
                 },
                 "opened" : { 
                   "unique" : {
-                    "total" : 18333,
-                    "percent" : 97.964
+                    "total" : 18133,
+                    "percent" : 98.731
                   },
-                  "total" : 18400
+                  "total" : 18200
                 },
                 "clicked" : { 
                   "unique" : {
-                    "total" : 18222,
-                    "percent" : 97.371
+                    "total" : 18022,
+                    "percent" : 98.288
                   },
                   "total" : 18300
                 },
                 "unsubscribed": { 
-                  "total" : 3, 
-                  "percent" : 0.001 
-                },
-                "apiErrors" : { 
-                  "total" : 0
-                },
-                "emailErrors" : { 
-                  "total" : 0, 
-                  "percent" : 0.000 
+                  "total" : 33, 
+                  "percent" : 0.002 
                 }
             }
-
 
 + Parameters
     + id (required) ... id for the message
@@ -1431,29 +1392,17 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                 "Events": [
                     {
                         "date" : "2014-02-06T07:06:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "total" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "total" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
-                          "total" : 18500, 
-                          "percent" : 98.856 
+                          "total" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18495, 
-                          "percent" : 98.830
+                          "total" : 18336, 
+                          "percent" : 99.114
                         },
                         "bounced" : { 
                           "total" : 164, 
                           "percent" : 0.009,
-                          "hard" : 14, 
+                          "hard" : 12, 
                           "soft" : 100, 
                           "blocked" : 50,
                           "technical" : 1,
@@ -1461,55 +1410,36 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
-                            "percent" : 97.964
+                            "total" : 18133,
+                            "percent" : 98.731
                           },
-                          "total" : 18400
+                          "total" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
-                            "percent" : 97.371
+                            "total" : 18022,
+                            "percent" : 98.288
                           },
                           "total" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
-                          "percent" : 0.001 
-                        },
-                        "apiErrors" : { 
-                          "total" : 0
-                        },
-                        "emailErrors" : { 
-                          "total" : 0, 
-                          "percent" : 0.000 
+                          "total" : 33, 
+                          "percent" : 0.002 
                         }
                     },
                     {
                         "date" : "2014-02-05T07:06:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "total" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "total" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
-                          "total" : 18500, 
-                          "percent" : 98.856 
+                          "total" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18495, 
-                          "percent" : 98.830
+                          "total" : 18336, 
+                          "percent" : 99.114
                         },
                         "bounced" : { 
                           "total" : 164, 
                           "percent" : 0.009,
-                          "hard" : 14, 
+                          "hard" : 12, 
                           "soft" : 100, 
                           "blocked" : 50,
                           "technical" : 1,
@@ -1517,55 +1447,36 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
-                            "percent" : 97.964
+                            "total" : 18133,
+                            "percent" : 98.731
                           },
-                          "total" : 18400
+                          "total" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
-                            "percent" : 97.371
+                            "total" : 18022,
+                            "percent" : 98.288
                           },
                           "total" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
-                          "percent" : 0.001 
-                        },
-                        "apiErrors" : { 
-                          "total" : 0
-                        },
-                        "emailErrors" : { 
-                          "total" : 0, 
-                          "percent" : 0.000 
+                          "total" : 33, 
+                          "percent" : 0.002 
                         }
                     },
                     {
                         "date" : "2014-02-04T07:06:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "total" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "total" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
-                          "total" : 18500, 
-                          "percent" : 98.856 
+                          "total" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18495, 
-                          "percent" : 98.830
+                          "total" : 18336, 
+                          "percent" : 99.114
                         },
                         "bounced" : { 
                           "total" : 164, 
                           "percent" : 0.009,
-                          "hard" : 14, 
+                          "hard" : 12, 
                           "soft" : 100, 
                           "blocked" : 50,
                           "technical" : 1,
@@ -1573,31 +1484,24 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
-                            "percent" : 97.964
+                            "total" : 18133,
+                            "percent" : 98.731
                           },
-                          "total" : 18400
+                          "total" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
-                            "percent" : 97.371
+                            "total" : 18022,
+                            "percent" : 98.288
                           },
                           "total" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
-                          "percent" : 0.001 
-                        },
-                        "apiErrors" : { 
-                          "total" : 0
-                        },
-                        "emailErrors" : { 
-                          "total" : 0, 
-                          "percent" : 0.000 
+                          "total" : 33, 
+                          "percent" : 0.002 
                         }
                     }
-                ]
+                }
             }
 
 + Parameters
@@ -1621,32 +1525,21 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                     "self": { "href": "/message/{id}/events/hourly{?fields,startDate,endDate}" },
                     "parent": { "href": "/message/{id}/events" }
                 },
+                "id": "{id}",
                 "Events": [
                     {
                         "date" : "2014-02-04T01:00:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "total" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "total" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
-                          "total" : 18500, 
-                          "percent" : 98.856 
+                          "total" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18495, 
-                          "percent" : 98.830
+                          "total" : 18336, 
+                          "percent" : 99.114
                         },
                         "bounced" : { 
                           "total" : 164, 
                           "percent" : 0.009,
-                          "hard" : 14, 
+                          "hard" : 12, 
                           "soft" : 100, 
                           "blocked" : 50,
                           "technical" : 1,
@@ -1654,55 +1547,36 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
-                            "percent" : 97.964
+                            "total" : 18133,
+                            "percent" : 98.731
                           },
-                          "total" : 18400
+                          "total" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
-                            "percent" : 97.371
+                            "total" : 18022,
+                            "percent" : 98.288
                           },
                           "total" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
-                          "percent" : 0.001 
-                        },
-                        "apiErrors" : { 
-                          "total" : 0
-                        },
-                        "emailErrors" : { 
-                          "total" : 0, 
-                          "percent" : 0.000 
+                          "total" : 33, 
+                          "percent" : 0.002 
                         }
                     },
                     {
                         "date" : "2014-02-04T02:00:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "total" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "total" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
-                          "total" : 18500, 
-                          "percent" : 98.856 
+                          "total" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18495, 
-                          "percent" : 98.830
+                          "total" : 18336, 
+                          "percent" : 99.114
                         },
                         "bounced" : { 
                           "total" : 164, 
                           "percent" : 0.009,
-                          "hard" : 14, 
+                          "hard" : 12, 
                           "soft" : 100, 
                           "blocked" : 50,
                           "technical" : 1,
@@ -1710,55 +1584,36 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
-                            "percent" : 97.964
+                            "total" : 18133,
+                            "percent" : 98.731
                           },
-                          "total" : 18400
+                          "total" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
-                            "percent" : 97.371
+                            "total" : 18022,
+                            "percent" : 98.288
                           },
                           "total" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
-                          "percent" : 0.001 
-                        },
-                        "apiErrors" : { 
-                          "total" : 0
-                        },
-                        "emailErrors" : { 
-                          "total" : 0, 
-                          "percent" : 0.000 
+                          "total" : 33, 
+                          "percent" : 0.002 
                         }
                     },
                     {
                         "date" : "2014-02-04T03:00:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "total" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "total" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
-                          "total" : 18500, 
-                          "percent" : 98.856 
+                          "total" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18495, 
-                          "percent" : 98.830
+                          "total" : 18336, 
+                          "percent" : 99.114
                         },
                         "bounced" : { 
                           "total" : 164, 
                           "percent" : 0.009,
-                          "hard" : 14, 
+                          "hard" : 12, 
                           "soft" : 100, 
                           "blocked" : 50,
                           "technical" : 1,
@@ -1766,31 +1621,24 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
-                            "percent" : 97.964
+                            "total" : 18133,
+                            "percent" : 98.731
                           },
-                          "total" : 18400
+                          "total" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
-                            "percent" : 97.371
+                            "total" : 18022,
+                            "percent" : 98.288
                           },
                           "total" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
-                          "percent" : 0.001 
-                        },
-                        "apiErrors" : { 
-                          "total" : 0
-                        },
-                        "emailErrors" : { 
-                          "total" : 0, 
-                          "percent" : 0.000 
+                          "total" : 33, 
+                          "percent" : 0.002 
                         }
                     }
-                ]
+                }
             }
 
 + Parameters
