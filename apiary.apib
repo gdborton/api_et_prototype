@@ -1675,12 +1675,14 @@ Email thumbnail for message jobs
 + Response 200
     [Message Email Thumbnail][]
 
-## Retrieve Queued Transactions [/messages/{id}/queue]
+## Retrieve Queued Transactions [/messages/{id}/queue{?$filter}]
 A collection of queued transactions for a paused message
 
 + Parameters
     + id (required) ... id for the message.
-
+    + filter (optional, string) ... complex search criteria.  Ability to search by email address or subscriber key.
+        http://base/Development/REST_API#Querying
+    
 + Model (application/json)
     JSON Representation for all queued transactions associated to a message
     + Body
@@ -1705,7 +1707,8 @@ A collection of queued transactions for a paused message
                             "memberId": "654",
                             "listId": "8435"
                             "fullName": "Erin Smith"
-                            "emailAddress": "esmith@foo.com"
+                            "emailAddress": "esmith@foo.com",
+                            "subscriberKey": "esmith@foo.com"
                         }
                     },
                     {
@@ -1718,7 +1721,8 @@ A collection of queued transactions for a paused message
                             "memberId": "659",
                             "listId": "8435"
                             "fullName": "Bob Jones"
-                            "emailAddress": "bjones@foo.com"
+                            "emailAddress": "bjones@foo.com",
+                            "subscriberKey": "bob123"
                         }
                     }
                 ]
