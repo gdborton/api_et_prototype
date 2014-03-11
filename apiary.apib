@@ -864,6 +864,30 @@ Status information of a job for a given date range
 + Response 200
     [Jobs Status][]
 
+## Job Email Thumbnail [/jobs/{id}/thumbnail{?width,height,subId}]
+Email thumbnail for a job
+
++ Parameters
+    + id (required) ... Job id.
+    + width (required) ... width of the image.
+    + height (required) ... height of the image.
+    + subId (optional) ... Subscriber ID. This would be used in the event that the consumer wants the resulting thumbnail to be customized for a particular subscriber
+
++ Model (application/json)
+    JSON Representation of the email preview for a job
+    + Body
+    
+            {
+                "id": "{id}",
+                "img": "GQ8XQAYFAiEMfN0qD0COTgMX",
+                "contentType": "image/jpeg"
+            }
+
+### Retrieve Email Thumbnail for a Job [GET]
++ Response 200
+    [Job Email Thumbnail][]
+
+
 
 # Group Message Resource
 
