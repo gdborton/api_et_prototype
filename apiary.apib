@@ -899,11 +899,38 @@ The Message Resource
     + Body
     
             {
-                "_links": {
-                    "self": { "href": "/messages/{id}" },
-                    "parent": { "href": "/" }
+                "links": {
+                    "parent": { "href": "/v1/messages/triggered"},                    
+                    "self": { "href": "/v1/messages/3BC9D7FE-BE25-E111-8480-001CC49493B0"},                    
+                    "send" : { "href": "/v1/messages/3BC9D7FE-BE25-E111-8480-001CC49493B0/send"},
+                    "events" : { "href": "/v1/messages/3BC9D7FE-BE25-E111-8480-001CC49493B0/events"},                    
+                    "dailyEvents" : { "href": "/v1/messages/3BC9D7FE-BE25-E111-8480-001CC49493B0/events/daily"},                    
+                    "hourlyEvents" : { "href": "/v1/messages/3BC9D7FE-BE25-E111-8480-001CC49493B0/events/hourly"}, 
+                    "thumbnail" : { "href": "/v1/messages/3BC9D7FE-BE25-E111-8480-001CC49493B0/thumbnail"}, 
+                    "queue" : { "href": "/v1/messages/3BC9D7FE-BE25-E111-8480-001CC49493B0/queue"}
                 },
-                "id": "{id}"
+                "id" : 9223372036854775807, 
+                "name" : "TSD Name",
+                "description" : "TSD Description",
+                "emailId" : 9223372036854775807,
+                "key" : "customerKey123",
+                "listId" : 9223372036854775807,
+                "triggeredSendStatus" : "New", 
+                "sendClassificationId": "fa5063f4-556b-e011-a61f-0050568700ba",
+                "senderProfileId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
+                "deliveryProfileId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
+                "autoAddSubscribers" : true, 
+                "autoUpdateSubscribers" : true,
+                "bccEmail" : "an@email.com",
+                "emailSubject" : "The email subject",
+                "isMultipart" : true,
+                "isWrapped" : true,
+                "suppressTracking" : true,
+                "categoryId" : 2147483683,
+                "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }],                        
+                "exclusionFilter" : "ampScript Goes Here",
+                "priority" : "Low",
+                "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
             }
 
 
