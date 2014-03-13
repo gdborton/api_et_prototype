@@ -69,7 +69,7 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
                     "self": { "href": "/accounts/{memberId}/sendlimits" },
                     "parent": { "href": "/accounts/{memberId}" }
                 },         
-                "id" : {memberId},
+                "id" : "{memberId}",
                 "currentCycle" : {
                     "email" : {
                         "sent" : 6500,
@@ -138,7 +138,7 @@ Definition of a Send Limit Cycle
                 "self": { "href": "/accounts/{memberId}/sendlimits/{cycleId}" },
                 "parent": { "href": "/accounts/{memberId}/sendlimits" }
             },            
-            "id" : {cycleId},
+            "id" : "{cycleId}",
             "type" : "email",
             "purchaseDate" : "2014-02-27T22:14:38+00:00",
             "expirationDate" : "2014-03-26T22:14:38+00:00",
@@ -212,7 +212,7 @@ An Account's Send Limit Cycles
                     "next"   : { "href": "/accounts/{memberId}/sendlimits?pageSize=3&page=3" },
                     "prev"   : { "href": "/accounts/{memberId}/sendlimits?pageSize=3&page=1" },
                 },         
-                "id" : {memberId},
+                "id" : "{memberId}",
                 "count" : 9,
                 "page" : 2,
                 "pageSize" : 3,
