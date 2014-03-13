@@ -60,10 +60,6 @@ Definition of an Account resource
 
 Definition of an Account's current Volume Capping information.  Only returns cycles that are "valid" for the current cycle.
 
-+  Total is the sum of all available messages that can be sent in the "current" window, and is a sum of "MessageCounts"
-
-
-
 + Model (application/json)
     JSON Representation of an Account's Send Limits 
     + Body
@@ -73,26 +69,49 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
                     "self": { "href": "/accounts/{memberId}/sendlimits" },
                     "parent": { "href": "/accounts/{memberId}" }
                 },         
-                "id" : "{memberId}",
-                "email" : {
-                    "used" : 6500,
-                    "remaining" : 2500,
-                    "claimed" : 1000,
-                    "total" : 10000,
-                    "adjustments" : 0,
-                    "expirationDate" : "2014-03-26T22:14:38+00:00",
-                    "effectiveDate" : "2014-03-26T22:14:38+00:00",
-                    "grantedDate" : "2014-03-26T22:14:38+00:00"
+                "id" : {memberId},
+                "currentCycle" : {
+                    "email" : {
+                        "sent" : 6500,
+                        "remaining" : 3500,
+                        "total" : 10000,
+                        "cycleStartDate" : "2014-02-27T22:14:38+00:00",
+                        "cycleEndDate" : "2014-03-26T22:14:38+00:00"
+                    },
+                    "sms" : {
+                        "sent" : 2100,
+                        "remaining" : 2900,
+                        "total" : 5000,
+                        "cycleStartDate" : "2014-02-27T22:14:38+00:00",
+                        "cycleEndDate" : "2014-03-26T22:14:38+00:00"
+                    }
                 },
-                "sms" : {
-                    "used" : 6500,
-                    "remaining" : 2500,
-                    "claimed" : 1000,
-                    "total" : 10000,
-                    "adjustments" : 0,
-                    "expirationDate" : "2014-03-26T22:14:38+00:00",
-                    "effectiveDate" : "2014-03-26T22:14:38+00:00",
-                    "grantedDate" : "2014-03-26T22:14:38+00:00"
+                "cycles" : {
+                    "email" : [
+                        {
+                            "id" : 1,
+                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-03-26T22:14:38+00:00",
+                            "messages" : 5000
+                        },
+                        {
+                            "id" : 2,
+                            "purchaseDate" : "2014-03-15T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-04-14T22:14:38+00:00",
+                            "messages" : 5000
+                        }
+                    ],
+                    "sms" : [
+                        {
+                            "id" : 3,
+                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-03-26T22:14:38+00:00",
+                            "messages" : 5000
+                        }
+                    ]
                 }
             }
 
@@ -100,16 +119,76 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
 
 + Parameters
     + memberId (required) ... MID for the account
-    + fields (optional, string, `email,sms,id` ) ... Comma Separated string of event fields to be returned.  If not specified, all fields are returned.
+    + fields (optional, string ) ... Comma Separated string of event fields to be returned.
         + Values 
-            + `email`
-            + `sms`
             + `id`
+            + `currentCycle`
+            + `cycles`
             
 + Response 200
     [Account Send Limit - Current][]
 
-### Add Messages to Send Limits - Update Send Limits [PUT]
+## Account Send Limit - Cycles - RUD [/accounts/{memberId}/sendlimits/{cycleId}{?fields}]
+Definition of a Send Limit Cycle
+
++ Model
+
+        {
+            "_links": {
+                "self": { "href": "/accounts/{memberId}/sendlimits/{cycleId}" },
+                "parent": { "href": "/accounts/{memberId}/sendlimits" }
+            },            
+            "id" : {cycleId},
+            "type" : "email",
+            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+            "expirationDate" : "2014-03-26T22:14:38+00:00",
+            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+            "messages" : 5000
+        }
+        
++ Parameters
+    + memberId (required) ... MID for the account
+    + cycleId (required) ... id for the cycle
+    + fields (optional, string ) ... Comma Separated string of fields to be returned.
+        + Values 
+            + `id`
+            + `purchaseDate`
+            + `expirationDate`
+            + `messages`
+            + `type`
+
+### Retrieve Cycle [GET]
+
++ Response 200
+[Account Send Limit - Cycles - RUD][]
+
+### Update Cycle [PATCH]
+Automatically updates modifiedDate.  purchaseDate is read-only.
+
++ Request
+
+        {
+            "type" : "email",
+            "messages" : 5000,
+            "expirationDate" : "2014-03-26T22:14:38+00:00"
+        }
+
++ Response 200
+[Account Send Limit - Cycles - RUD][]
+
+
+### Delete Cycle [DELETE]
+
++ Response 204
+
+## Account Send Limit [/accounts/{memberId}/sendlimits]
+An Account's Send Limit Cycles
+
++ Parameters
+    + memberId (required) ... MID for the account
+
+
+### Add Messages to Send Limits - Create a Cycle [POST]
 
 + Request
 
@@ -120,33 +199,50 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
         }
         
 + Response 200
+[Account Send Limit - Cycles - RUD][]
+
+### Get Send Limit Cycles Collection [GET]
+
++ Response 200
 
             {
-                "id" : "{memberId}",
-                "email" : {
-                    "used" : 0,
-                    "remaining" : 5000,
-                    "claimed" : 0,
-                    "total" : 5000,
-                    "adjustments" : 0,
-                    "expirationDate" : "2014-03-26T22:14:38+00:00",
-                    "effectiveDate" : "2014-02-27T22:14:38+00:00",
-                    "grantedDate" : "2014-02-27T22:14:38+00:00"
-                },
-                "sms" : {
-                    "used" : 6500,
-                    "remaining" : 2500,
-                    "claimed" : 1000,
-                    "total" : 10000,
-                    "adjustments" : 0,
-                    "expirationDate" : "2014-03-26T22:14:38+00:00",
-                    "effectiveDate" : "2014-02-27T22:14:38+00:00",
-                    "grantedDate" : "2014-02-27T22:14:38+00:00"
+                "_links": {
+                    "self"   : { "href": "/accounts/{memberId}/sendlimits" },
+                    "parent" : { "href": "/accounts/{memberId}" },
+                    "next"   : { "href": "/accounts/{memberId}/sendlimits?pageSize=3&page=3" },
+                    "prev"   : { "href": "/accounts/{memberId}/sendlimits?pageSize=3&page=1" },
+                },         
+                "id" : {memberId},
+                "count" : 9,
+                "page" : 2,
+                "pageSize" : 3,
+                "cycles" : {
+                            "id" : 4,
+                            "type" : "email",
+                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-03-26T22:14:38+00:00",
+                            "messages" : 5000
+                        },
+                        {
+                            "id" : 5,
+                            "type" : "email",
+                            "purchaseDate" : "2014-03-15T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-04-14T22:14:38+00:00",
+                            "messages" : 5000
+                        },
+                        {
+                            "id" : 6,
+                            "type" : "sms",
+                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                            "expirationDate" : "2014-03-26T22:14:38+00:00",
+                            "messages" : 5000
+                        }
+                    ]
                 }
             }
-
-
-
 
 
 ## Account Messages Transactional Collection [/accounts/{memberId}/messages/transactional{?pageSize,count}]
