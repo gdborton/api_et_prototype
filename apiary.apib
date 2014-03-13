@@ -58,7 +58,13 @@ Definition of an Account resource
 
 ## Account Send Limit - Current [/accounts/{memberId}/sendlimits/current{?fields}]
 
-Definition of an Account's current Volume Capping information.  Only returns cycles that are "valid" for the current cycle.
+Definition of an Account's current Volume Capping information.  
+
++   "Current" message credits are EffectiveDate <= now and the Expiration Date > now.
++   Only returns messageCredits that are Current
++   currentCycle is an aggregate of all credits that are Current
+
+
 
 + Model (application/json)
     JSON Representation of an Account's Send Limits 
@@ -88,7 +94,7 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
                         "cycleEndDate" : "2014-03-26T22:14:38+00:00"
                     }
                 },
-                "cycles" : {
+                "messageCredits" : {
                     "email" : [
                         {
                             "id" : 1,
@@ -130,7 +136,7 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
 + Response 200
     [Account Send Limit - Current][]
 
-## Account Send Limit - Cycles - RUD [/accounts/{memberId}/sendlimits/{cycleId}{?fields}]
+## Account Send Limit - Message Credits - RUD [/accounts/{memberId}/sendlimits/{messageCreditId}{?fields}]
 Definition of a Send Limit Cycle
 
 + Model
@@ -140,7 +146,7 @@ Definition of a Send Limit Cycle
                 "self": { "href": "/accounts/{memberId}/sendlimits/{cycleId}" },
                 "parent": { "href": "/accounts/{memberId}/sendlimits" }
             },            
-            "id" : "{cycleId}",
+            "id" : "{messageCreditId}",
             "type" : "email",
             "effectiveDate" : "2014-02-27T22:14:38+00:00",
             "expirationDate" : "2014-03-26T22:14:38+00:00",
@@ -150,7 +156,7 @@ Definition of a Send Limit Cycle
         
 + Parameters
     + memberId (required) ... MID for the account
-    + cycleId (required) ... id for the cycle
+    + messageCreditId (required) ... id for the messageCredit
     + fields (optional, string ) ... Comma Separated string of fields to be returned.
         + Values 
             + `id`
@@ -159,13 +165,13 @@ Definition of a Send Limit Cycle
             + `messages`
             + `type`
 
-### Retrieve Cycle [GET]
+### Retrieve Message Credit [GET]
 
 + Response 200
-[Account Send Limit - Cycles - RUD][]
+[Account Send Limit - Message Credits - RUD][]
 
-### Update Cycle [PATCH]
-Automatically updates modifiedDate.  purchaseDate is read-only.
+### Update Message Credit [PATCH]
+Automatically updates modifiedDate.   
 
 + Request
 
@@ -176,7 +182,7 @@ Automatically updates modifiedDate.  purchaseDate is read-only.
         }
 
 + Response 200
-[Account Send Limit - Cycles - RUD][]
+[Account Send Limit - Message Credits - RUD][]
 
 
 ### Delete Cycle [DELETE]
@@ -197,11 +203,12 @@ An Account's Send Limit Cycles
         {
             "type" : "email",
             "messages" : 5000,
+            "effectiveDate" : "2014-02-27T22:14:38+00:00",
             "expirationDate" : "2014-03-26T22:14:38+00:00"
         }
         
 + Response 200
-[Account Send Limit - Cycles - RUD][]
+[Account Send Limit - Message Credits - RUD][]
 
 ### Get Send Limit Cycles Collection [GET]
 
