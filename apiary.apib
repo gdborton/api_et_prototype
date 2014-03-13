@@ -74,7 +74,7 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
                     "email" : {
                         "sent" : 5500,
                         "remaining" : 3500,
-                        "pending" : 1000,
+                        "claimed" : 1000,
                         "total" : 10000,
                         "cycleStartDate" : "2014-02-27T22:14:38+00:00",
                         "cycleEndDate" : "2014-03-26T22:14:38+00:00"
@@ -82,7 +82,7 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
                     "sms" : {
                         "sent" : 2100,
                         "remaining" : 2900,
-                        "pending" : 0,
+                        "claimed" : 0,
                         "total" : 5000,
                         "cycleStartDate" : "2014-02-27T22:14:38+00:00",
                         "cycleEndDate" : "2014-03-26T22:14:38+00:00"
@@ -92,14 +92,14 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
                     "email" : [
                         {
                             "id" : 1,
-                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "effectiveDate" : "2014-02-27T22:14:38+00:00",
                             "modifiedDate" : "2014-02-27T22:14:38+00:00",
                             "expirationDate" : "2014-03-26T22:14:38+00:00",
                             "messages" : 5000
                         },
                         {
                             "id" : 2,
-                            "purchaseDate" : "2014-03-15T22:14:38+00:00",
+                            "effectiveDate" : "2014-03-15T22:14:38+00:00",
                             "modifiedDate" : "2014-02-27T22:14:38+00:00",
                             "expirationDate" : "2014-04-14T22:14:38+00:00",
                             "messages" : 5000
@@ -108,7 +108,7 @@ Definition of an Account's current Volume Capping information.  Only returns cyc
                     "sms" : [
                         {
                             "id" : 3,
-                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "effectiveDate" : "2014-02-27T22:14:38+00:00",
                             "modifiedDate" : "2014-02-27T22:14:38+00:00",
                             "expirationDate" : "2014-03-26T22:14:38+00:00",
                             "messages" : 5000
@@ -142,7 +142,7 @@ Definition of a Send Limit Cycle
             },            
             "id" : "{cycleId}",
             "type" : "email",
-            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+            "effectiveDate" : "2014-02-27T22:14:38+00:00",
             "expirationDate" : "2014-03-26T22:14:38+00:00",
             "modifiedDate" : "2014-02-27T22:14:38+00:00",
             "messages" : 5000
@@ -223,7 +223,7 @@ An Account's Send Limit Cycles
                         {
                             "id" : 4,
                             "type" : "email",
-                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "effectiveDate" : "2014-02-27T22:14:38+00:00",
                             "modifiedDate" : "2014-02-27T22:14:38+00:00",
                             "expirationDate" : "2014-03-26T22:14:38+00:00",
                             "messages" : 5000
@@ -231,7 +231,7 @@ An Account's Send Limit Cycles
                         {
                             "id" : 5,
                             "type" : "email",
-                            "purchaseDate" : "2014-03-15T22:14:38+00:00",
+                            "effectiveDate" : "2014-03-15T22:14:38+00:00",
                             "modifiedDate" : "2014-02-27T22:14:38+00:00",
                             "expirationDate" : "2014-04-14T22:14:38+00:00",
                             "messages" : 5000
@@ -239,7 +239,7 @@ An Account's Send Limit Cycles
                         {
                             "id" : 6,
                             "type" : "sms",
-                            "purchaseDate" : "2014-02-27T22:14:38+00:00",
+                            "effectiveDate" : "2014-02-27T22:14:38+00:00",
                             "modifiedDate" : "2014-02-27T22:14:38+00:00",
                             "expirationDate" : "2014-03-26T22:14:38+00:00",
                             "messages" : 5000
