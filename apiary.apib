@@ -56,14 +56,15 @@ Definition of an Account resource
 + Response 200
     [Account Object DRAFT][]
 
-## Account Send Limit - Current [/accounts/{memberId}/sendlimits/current{?fields}]
+## Account Send Limit - Current [/accounts/{memberId}/sendlimits{?asOfDate,type,fields}]
 
 Definition of an Account's current Volume Capping information.  
 
-+   "Current" message credits are EffectiveDate <= now and the Expiration Date > now.
++   asOfDate is a ISO8601 formatted date, which must be in the future.  If unspecified, it defaults to current time.
++   type is a string, and can be "email" or "sms".  If unspecified, it will return both.
++   message credits are considered "Current" only if EffectiveDate <= asOfDate and the Expiration Date > asOfDate.
 +   Only returns messageCredits that are Current
-+   currentCycle is an aggregate of all credits that are Current
-
++   creditBalance is an aggregate of all credits that are Current based upon the specified asOfDate
 
 
 + Model (application/json)
@@ -76,10 +77,11 @@ Definition of an Account's current Volume Capping information.
                     "parent": { "href": "/accounts/{memberId}" }
                 },         
                 "id" : "{memberId}",
-                "currentCycle" : {
+                "creditBalance" : {
                     "email" : {
                         "sent" : 5500,
-                        "remaining" : 3500,
+                        "unused" : "4500",
+                        "available" : 3500,
                         "claimed" : 1000,
                         "total" : 10000,
                         "cycleStartDate" : "2014-02-27T22:14:38+00:00",
@@ -87,7 +89,8 @@ Definition of an Account's current Volume Capping information.
                     },
                     "sms" : {
                         "sent" : 2100,
-                        "remaining" : 2900,
+                        "unused" : 2900,
+                        "available" : 2900,
                         "claimed" : 0,
                         "total" : 5000,
                         "cycleStartDate" : "2014-02-27T22:14:38+00:00",
@@ -127,11 +130,16 @@ Definition of an Account's current Volume Capping information.
 
 + Parameters
     + memberId (required) ... MID for the account
+    + asOfDate (optional, string) ... ISO8601 formatted date, must be >= current time.  If unspecified, defaults to current time.
+    + type (optional, string) ... Type of messages send limits to return.  
+        + Values
+            + `email`
+            + `sms`
     + fields (optional, string ) ... Comma Separated string of event fields to be returned.
         + Values 
             + `id`
-            + `currentCycle`
-            + `cycles`
+            + `creditBalance`
+            + `messageCredits`
             
 + Response 200
     [Account Send Limit - Current][]
@@ -190,7 +198,7 @@ Automatically updates modifiedDate.
 + Response 204
 
 ## Account Send Limit [/accounts/{memberId}/sendlimits]
-An Account's Send Limit Cycles
+An Account's Send Limit message credits
 
 + Parameters
     + memberId (required) ... MID for the account
@@ -207,10 +215,10 @@ An Account's Send Limit Cycles
             "expirationDate" : "2014-03-26T22:14:38+00:00"
         }
         
-+ Response 200
++ Response 201
 [Account Send Limit - Message Credits - RUD][]
 
-### Get Send Limit Cycles Collection [GET]
+### Get Send Limit Message Credits Collection [GET]
 
 + Response 200
 
@@ -225,7 +233,7 @@ An Account's Send Limit Cycles
                 "count" : 9,
                 "page" : 2,
                 "pageSize" : 3,
-                "cycles" : 
+                "messageCredits" : 
                     [
                         {
                             "id" : 4,
