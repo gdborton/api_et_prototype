@@ -77,53 +77,61 @@ Definition of an Account's current Volume Capping information.
                     "parent": { "href": "/accounts/{memberId}" }
                 },         
                 "id" : "{memberId}",
-                "creditBalance" : {
-                    "email" : {
-                        "sent" : 5500,
-                        "unused" : 4500,
-                        "available" : 3500,
-                        "claimed" : 1000,
-                        "total" : 10000,
-                        "cycleStartDate" : "2014-02-27T22:14:38+00:00",
-                        "cycleEndDate" : "2014-03-26T22:14:38+00:00"
-                    },
-                    "sms" : {
-                        "sent" : 2100,
-                        "unused" : 2900,
-                        "available" : 2900,
-                        "claimed" : 0,
-                        "total" : 5000,
-                        "cycleStartDate" : "2014-02-27T22:14:38+00:00",
-                        "cycleEndDate" : "2014-03-26T22:14:38+00:00"
-                    }
-                },
-                "messageCredits" : {
-                    "email" : [
+                "creditBalance" : [
                         {
-                            "id" : 1,
-                            "effectiveDate" : "2014-02-27T22:14:38+00:00",
-                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
-                            "expirationDate" : "2014-03-26T22:14:38+00:00",
-                            "messages" : 5000
+                            "type" : "email", 
+                            "sent" : 5500,
+                            "unused" : 4500,
+                            "available" : 3500,
+                            "claimed" : 1000,
+                            "total" : 10000,
+                            "cycleStartDate" : "2014-02-27T22:14:38+00:00",
+                            "cycleEndDate" : "2014-03-26T22:14:38+00:00"
                         },
                         {
-                            "id" : 2,
-                            "effectiveDate" : "2014-03-15T22:14:38+00:00",
-                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
-                            "expirationDate" : "2014-04-14T22:14:38+00:00",
-                            "messages" : 5000
+                            "type" : "sms",
+                            "sent" : 2100,
+                            "unused" : 2900,
+                            "available" : 2900,
+                            "claimed" : 0,
+                            "total" : 5000,
+                            "cycleStartDate" : "2014-02-27T22:14:38+00:00",
+                            "cycleEndDate" : "2014-03-26T22:14:38+00:00"
                         }
-                    ],
-                    "sms" : [
-                        {
-                            "id" : 3,
-                            "effectiveDate" : "2014-02-27T22:14:38+00:00",
-                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
-                            "expirationDate" : "2014-03-26T22:14:38+00:00",
-                            "messages" : 5000
-                        }
-                    ]
-                }
+                ],
+                "messageCredits" : [
+                    {
+                        "type" : "email",
+                        "credits" : [
+                            {
+                                "id" : 1,
+                                "effectiveDate" : "2014-02-27T22:14:38+00:00",
+                                "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                                "expirationDate" : "2014-03-26T22:14:38+00:00",
+                                "messages" : 5000
+                            },
+                            {
+                                "id" : 2,
+                                "effectiveDate" : "2014-03-15T22:14:38+00:00",
+                                "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                                "expirationDate" : "2014-04-14T22:14:38+00:00",
+                                "messages" : 5000
+                            }
+                        ]
+                    },
+                    {
+                        "type" : "sms",
+                        "credits" : [
+                            {
+                                "id" : 3,
+                                "effectiveDate" : "2014-02-27T22:14:38+00:00",
+                                "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                                "expirationDate" : "2014-03-26T22:14:38+00:00",
+                                "messages" : 5000
+                            }
+                        ]   
+                    }
+                ]
             }
 
 ### Retrieve an Account's Current Send Limits [GET]
