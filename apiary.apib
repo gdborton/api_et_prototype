@@ -56,7 +56,7 @@ Definition of an Account resource
 + Response 200
     [Account Object DRAFT][]
 
-## Account Send Limit - Current [/accounts/{memberId}/sendlimits{?asOfDate,type,fields}]
+## Account Send Limit - Status [/accounts/{memberId}/sendlimits/status{?asOfDate,type,fields}]
 
 Definition of an Account's current Volume Capping information.  
 
@@ -150,7 +150,7 @@ Definition of an Account's current Volume Capping information.
             + `messageCredits`
             
 + Response 200
-    [Account Send Limit - Current][]
+    [Account Send Limit - Status][]
 
 ## Account Send Limit - Message Credits - RUD [/accounts/{memberId}/sendlimits/{messageCreditId}{?fields}]
 Definition of a Send Limit Cycle
