@@ -1068,6 +1068,11 @@ Create a new TriggeredSendDefinition
             }
 
 ### Create a Triggered Send Definition Message [POST]
+
++   triggeredSendStatus, potential values: Inactive, Active, Canceled 
++   priority : Low, Medium, High
+
+
 + Request (application/json)
 
         {
@@ -1076,7 +1081,7 @@ Create a new TriggeredSendDefinition
             "emailId" : 1000,
             "customerKey" : "customerKey123",
             "listId" : 400,
-            "triggeredSendStatus" : "New", /*Inactive, Active, Canceled - do we want to allow changing status upon creation?*/
+            "triggeredSendStatus" : "New", 
             "sendClassification" : { 
                 "customerKey" : "sc CustomerKey123", 
                 "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
@@ -1089,8 +1094,8 @@ Create a new TriggeredSendDefinition
                 "customerKey" : "dp CustomerKey", 
                 "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
             },
-            "autoAddSubscribers" : true, /*bool*/
-            "autoUpdateSubscribers" : true, /*bool*/
+            "autoAddSubscribers" : true, 
+            "autoUpdateSubscribers" : true, 
             "ccEmail" : "an@email.com",
             "bccEmail" : "an@email.com",
             "emailSubject" : "The email subject",
@@ -1098,10 +1103,10 @@ Create a new TriggeredSendDefinition
             "isWrapped" : true,
             "suppressTracking" : true,
             "categoryId" : 2147483683,
-            "campaignId" : 1000, /* doesn't exist in current SDK */
+            "campaignId" : 1000, 
             "refreshContent" : true,
             "exclusionFilter" : "ampScript Goes Here",
-            "priority" : "Low", /* Medium, High */
+            "priority" : "Low", 
             "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
         }
 
