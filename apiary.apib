@@ -415,18 +415,19 @@ v2 - Total counts of jobs for a given account for a given date range, grouped by
     [Account Jobs Status - v2][]
 
 
-## Account Events [/accounts/{memberId}/events{?fields,startDate,endDate}]
-A collection of all events that have occurred for an account, total.
+## Account Events - Summary [/accounts/{memberId}/events/summary{?fields,startDate,endDate}]
+A summary of all events that have occurred for an account.  
 
 + Model (application/json)
-    JSON Representation of events that have occurred on an Account, rolled up daily
+    JSON Representation of events that have occurred on an Account, between the startDate and endDate provided.
+
     + Body
     
             {
                 "_links": {
                     "daily": { "href": "/accounts/{id}/events/daily{?fields,startDate,endDate}"},
                     "hourly": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}"},
-                    "self": { "href": "/accounts/{id}/events{?fields,startDate,endDate}" },
+                    "self": { "href": "/accounts/{id}/events/summary{?fields,startDate,endDate}" },
                     "parent": { "href": "/accounts/{id}" }
                 },
                 "id": "{id}",
@@ -492,12 +493,12 @@ A collection of all events that have occurred for an account, total.
     + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
-### Retrieve all Events for an Account [GET]
+### Retrieve Events Summary for an Account [GET]
 + Response 200
-    [Account Events][]
+    [Account Events - Summary][]
 
 ## Account Events Daily [/accounts/{memberId}/events/daily{?fields,startDate,endDate}]
-A collection of events that have occurred for an account, rolled into 24 hour chunks
+A collection of events that have occurred for an account, rolled into 24 hour chunks.  startDate and endDate must be passed together.  If no startDate and endDate are provided, return last 7 days.
 
 + Model (application/json)
     JSON Representation of events that have occurred on an Account, rolled up daily
@@ -685,7 +686,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
+    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  
     + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Events for an Account with daily precision [GET]
@@ -694,7 +695,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 
 ## Account Events Hourly [/accounts/{memberId}/events/hourly{?fields,startDate,endDate}]
 + Model (application/json)
-    JSON Representation of events that have occurred on an Account, rolled up hourly.
+    JSON Representation of events that have occurred on an Account, rolled up hourly.  startDate and endDate must be provided together.  If no start/end Date pair is provided, return last 24 hours.
     + Body
     
             {
