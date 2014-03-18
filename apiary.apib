@@ -688,8 +688,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  if unspecified, is Now - 7 days.
+    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on. if unspecified, is Now.
 
 ### Retrieve Events for an Account with daily precision [GET]
 + Response 200
@@ -881,8 +881,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  if unspecified, is now - 24 hours.
+    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on. if unspecified, is now.
 
 ### Retrieve Events for an Account, with Hourly precision [GET]
 
