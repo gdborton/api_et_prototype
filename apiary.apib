@@ -893,7 +893,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 # Group Jobs resource
 
 ## Jobs Events [/jobs/{id}/events{?fields}]
-A single Event object belonging to a job.
+A single Event object belonging to a job.  Always returns the latest values for the job, no date/time filtering allowed.
 
 + Parameters
     + id (required, number, `123`) ... Numeric `id` of the Job to retrieve events from
@@ -906,9 +906,12 @@ A single Event object belonging to a job.
             {
                 "_links": {
                     "self": { "href": "/jobs/{id}/events" },
+                    "message" : { "href" : "/messages/{messageId}" },
                     "parent": { "href": "/jobs/{id}" }
                 },
                 "id": "{id}",
+                "accountId" : "{accountId}",
+                "messageId" : "{messageId}",
                 "sent" : { 
                   "total" : 18500 
                 },
@@ -1016,15 +1019,6 @@ Email thumbnail for a job
 
 
 # Group Message Resource
-
-## Message Root [/messages/{id}]
-The Message Resource
-
-+ Parameters
-    + id (required) ... id for the message - can be the MessageID or CustomerKey of a message object
-
-### Delete a Message [DELETE]
-+ Response 204
 
 
 ## Create Triggered Message [/messages/triggered]
@@ -1360,9 +1354,9 @@ Search for triggeredSendDefinitions
 + Response 200
 [Search for Triggered Messages][]
 
-## Triggered Send Status [/messages/triggered/status{?startDate,endDate}]
+## Triggered Send Status [/messages/triggered/status{?fields,startDate,endDate}]
 
-Status information about a triggered send.  Retrieves status for the account ID based upon token used to make the call.  Currently no way to specify external accounts.
+Status information about a triggered send.  Retrieves status for the account ID based upon token used to make the call.
 
 + Model (application/json)
     JSON Representation of Statuses of Triggered Sends
@@ -1373,6 +1367,10 @@ Status information about a triggered send.  Retrieves status for the account ID 
                     "self": { "href": "/messages/triggered/status{?startDate,endDate}" },
                     "parent": { "href": "/messages/triggered" }
                 },
+                "accountId" : "{accountId}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
+                "accountId" : "{memberId}",
                 "total": 134, 
                 "active" : 32,
                 "paused" : 7,
@@ -1382,8 +1380,21 @@ Status information about a triggered send.  Retrieves status for the account ID 
             }
 
 + Parameters
-    + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from. 
+    + startDate =`creationDate of message` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from. 
     + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + fields = `total,active` (optional, string) ... comma separated list of fields to return
+        + values
+            + `accountId`
+            + `startDate`
+            + `endDate`
+            + `accountId`
+            + `total`
+            + `active`
+            + `paused`
+            + `stopped`
+            + `deleted`
+            + `new`
+            
 
 ### Retrieve Triggered Send counts [GET]
 
