@@ -950,7 +950,7 @@ A single Event object belonging to a job.
     [Jobs Events][]
 
 ## Jobs Status [/jobs/{id}/status{?fields}]
-Status information of a job for a given date range
+Status information of a job
 
 + Parameters
     + id (required) ... id of the job
@@ -1074,8 +1074,6 @@ Create a new TriggeredSendDefinition
             }
 
 ### Create a Triggered Send Definition Message [POST]
-
-
 
 
 + Request (application/json)
@@ -1364,7 +1362,7 @@ Search for triggeredSendDefinitions
 
 ## Triggered Send Status [/messages/triggered/status{?startDate,endDate}]
 
-Counts of triggered sends.
+Status information about a triggered send.  Retrieves status for the account ID based upon token used to make the call.  Currently no way to specify external accounts.
 
 + Model (application/json)
     JSON Representation of Statuses of Triggered Sends
@@ -1372,7 +1370,7 @@ Counts of triggered sends.
     
             {
                 "_links": {
-                    "self": { "href": "/messages/triggered/status" },
+                    "self": { "href": "/messages/triggered/status{?startDate,endDate}" },
                     "parent": { "href": "/messages/triggered" }
                 },
                 "total": 134, 
@@ -1384,7 +1382,7 @@ Counts of triggered sends.
             }
 
 + Parameters
-    + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from.  Depending on Precision, this may be rounded to the nearest Day or Hour.
+    + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from. 
     + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Triggered Send counts [GET]
@@ -1413,7 +1411,7 @@ Send a message using a pre-existing triggered send definition
 
 
 ## Message Events [/messages/{id}/events{?fields,startDate,endDate}]
-A collection of all events that have occurred for a message, total.
+A collection of all events that have occurred for a message for a given time range.  Results are collated into a single result.
 
 + Model (application/json)
     JSON Representation of events that have occurred on a Message
@@ -1427,6 +1425,8 @@ A collection of all events that have occurred for a message, total.
                     "parent": { "href": "/messages/{id}" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "sent" : { 
                   "total" : 18500 
                 },
@@ -1466,8 +1466,8 @@ A collection of all events that have occurred for a message, total.
 + Parameters
     + id (required) ... id for the message
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate=`creationDate of Message` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from. 
+    + endDate=`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve all Events for a Message [GET]
 + Response 200
