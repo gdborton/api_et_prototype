@@ -500,7 +500,7 @@ A summary of all events that have occurred for an account for a given timerange,
     [Account Events - Summary][]
 
 ## Account Events Daily [/accounts/{memberId}/events/daily{?fields,startDate,endDate}]
-A collection of events that have occurred for an account, rolled into 24 hour chunks.  startDate and endDate must be passed together.  If no startDate and endDate are provided, return last 7 days.
+A collection of events that have occurred for an account, rolled into 24 hour chunks.
 
 + Model (application/json)
     JSON Representation of events that have occurred on an Account, rolled up daily
@@ -513,6 +513,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                     "parent": { "href": "/accounts/{id}/events" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "Events": [
                     {
                         "date" : "2014-02-06T07:06:00Z",
@@ -688,8 +690,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  if unspecified, is Now - 7 days.
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on. if unspecified, is Now.
+    + startDate=`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from. 
+    + endDate=`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Events for an Account with daily precision [GET]
 + Response 200
