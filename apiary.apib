@@ -492,8 +492,8 @@ A summary of all events that have occurred for an account for a given timerange,
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  If unspecified is the createdDate of the first Message in the account.
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.  If unspecified, is now.
+    + startDate=`creationDate of first message created by account` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.
+    + endDate=`now` (optional, string) ... ISO8601 formatted Date string, end time to cap results on. 
 
 ### Retrieve Events Summary for an Account [GET]
 + Response 200
