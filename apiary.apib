@@ -416,7 +416,7 @@ v2 - Total counts of jobs for a given account for a given date range, grouped by
 
 
 ## Account Events - Summary [/accounts/{memberId}/events/summary{?fields,startDate,endDate}]
-A summary of all events that have occurred for an account.  
+A summary of all events that have occurred for an account for a given timerange, rolled into a single object.
 
 + Model (application/json)
     JSON Representation of events that have occurred on an Account, between the startDate and endDate provided.
@@ -431,6 +431,8 @@ A summary of all events that have occurred for an account.
                     "parent": { "href": "/accounts/{id}" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "status" : {
                   "toSend": 18714, 
                   "inProgress" : { 
@@ -490,8 +492,8 @@ A summary of all events that have occurred for an account.
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  If unspecified is the createdDate of the first Message in the account.
+    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.  If unspecified, is now.
 
 ### Retrieve Events Summary for an Account [GET]
 + Response 200
