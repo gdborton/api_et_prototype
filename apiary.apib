@@ -1474,7 +1474,7 @@ A collection of all events that have occurred for a message for a given time ran
     [Message Events][]
 
 ## Message Events Daily [/messages/{id}/events/daily{?fields,startDate,endDate}]
-A collection of events that have occurred for a message, rolled into 24 hour chunks
+A collection of events that have occurred for a message, rolled into 24 hour chunks.
 
 + Model (application/json)
     JSON Representation of events that have occurred on a Message, rolled up daily
@@ -1487,6 +1487,8 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                     "parent": { "href": "/message/{id}/events" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "Events": [
                     {
                         "date" : "2014-02-06T07:06:00Z",
@@ -1605,8 +1607,8 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
 + Parameters
     + id (required) ... id for the message
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate=`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
+    + endDate=`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Events for a Message with daily precision [GET]
 + Response 200
