@@ -697,7 +697,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 
 ## Account Events Hourly [/accounts/{memberId}/events/hourly{?fields,startDate,endDate}]
 + Model (application/json)
-    JSON Representation of events that have occurred on an Account, rolled up hourly.  startDate and endDate must be provided together.  If no start/end Date pair is provided, return last 24 hours.
+    JSON Representation of events that have occurred on an Account, rolled up hourly.
     + Body
     
             {
@@ -706,6 +706,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                     "self": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}" },
                     "parent": { "href": "/accounts/{id}/events" }
                 },
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "Events": [
                     {
                         "date" : "2014-02-04T01:00:00Z",
@@ -881,8 +883,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  if unspecified, is now - 24 hours.
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on. if unspecified, is now.
+    + startDate = `Now - 24 hours` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  if unspecified, is now - 24 hours.
+    + endDate = `Now` (optional, string) ... ISO8601 formatted Date string, end time to cap results on. if unspecified, is now.
 
 ### Retrieve Events for an Account, with Hourly precision [GET]
 
