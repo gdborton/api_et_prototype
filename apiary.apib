@@ -56,7 +56,7 @@ Definition of an Account resource
 + Response 200
     [Account Object DRAFT][]
 
-## Account Send Limit - Current [/accounts/{memberId}/sendlimits{?asOfDate,type,fields}]
+## Account Send Limit - Status [/accounts/{memberId}/sendlimits/status{?asOfDate,type,fields}]
 
 Definition of an Account's current Volume Capping information.  
 
@@ -77,53 +77,61 @@ Definition of an Account's current Volume Capping information.
                     "parent": { "href": "/accounts/{memberId}" }
                 },         
                 "id" : "{memberId}",
-                "creditBalance" : {
-                    "email" : {
-                        "sent" : 5500,
-                        "unused" : 4500,
-                        "available" : 3500,
-                        "claimed" : 1000,
-                        "total" : 10000,
-                        "cycleStartDate" : "2014-02-27T22:14:38+00:00",
-                        "cycleEndDate" : "2014-03-26T22:14:38+00:00"
-                    },
-                    "sms" : {
-                        "sent" : 2100,
-                        "unused" : 2900,
-                        "available" : 2900,
-                        "claimed" : 0,
-                        "total" : 5000,
-                        "cycleStartDate" : "2014-02-27T22:14:38+00:00",
-                        "cycleEndDate" : "2014-03-26T22:14:38+00:00"
-                    }
-                },
-                "messageCredits" : {
-                    "email" : [
+                "creditBalance" : [
                         {
-                            "id" : 1,
-                            "effectiveDate" : "2014-02-27T22:14:38+00:00",
-                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
-                            "expirationDate" : "2014-03-26T22:14:38+00:00",
-                            "messages" : 5000
+                            "type" : "email", 
+                            "sent" : 5500,
+                            "unused" : 4500,
+                            "available" : 3500,
+                            "claimed" : 1000,
+                            "total" : 10000,
+                            "cycleStartDate" : "2014-02-27T22:14:38+00:00",
+                            "cycleEndDate" : "2014-03-26T22:14:38+00:00"
                         },
                         {
-                            "id" : 2,
-                            "effectiveDate" : "2014-03-15T22:14:38+00:00",
-                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
-                            "expirationDate" : "2014-04-14T22:14:38+00:00",
-                            "messages" : 5000
+                            "type" : "sms",
+                            "sent" : 2100,
+                            "unused" : 2900,
+                            "available" : 2900,
+                            "claimed" : 0,
+                            "total" : 5000,
+                            "cycleStartDate" : "2014-02-27T22:14:38+00:00",
+                            "cycleEndDate" : "2014-03-26T22:14:38+00:00"
                         }
-                    ],
-                    "sms" : [
-                        {
-                            "id" : 3,
-                            "effectiveDate" : "2014-02-27T22:14:38+00:00",
-                            "modifiedDate" : "2014-02-27T22:14:38+00:00",
-                            "expirationDate" : "2014-03-26T22:14:38+00:00",
-                            "messages" : 5000
-                        }
-                    ]
-                }
+                ],
+                "messageCredits" : [
+                    {
+                        "type" : "email",
+                        "credits" : [
+                            {
+                                "id" : 1,
+                                "effectiveDate" : "2014-02-27T22:14:38+00:00",
+                                "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                                "expirationDate" : "2014-03-26T22:14:38+00:00",
+                                "messages" : 5000
+                            },
+                            {
+                                "id" : 2,
+                                "effectiveDate" : "2014-03-15T22:14:38+00:00",
+                                "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                                "expirationDate" : "2014-04-14T22:14:38+00:00",
+                                "messages" : 5000
+                            }
+                        ]
+                    },
+                    {
+                        "type" : "sms",
+                        "credits" : [
+                            {
+                                "id" : 3,
+                                "effectiveDate" : "2014-02-27T22:14:38+00:00",
+                                "modifiedDate" : "2014-02-27T22:14:38+00:00",
+                                "expirationDate" : "2014-03-26T22:14:38+00:00",
+                                "messages" : 5000
+                            }
+                        ]   
+                    }
+                ]
             }
 
 ### Retrieve an Account's Current Send Limits [GET]
@@ -142,7 +150,7 @@ Definition of an Account's current Volume Capping information.
             + `messageCredits`
             
 + Response 200
-    [Account Send Limit - Current][]
+    [Account Send Limit - Status][]
 
 ## Account Send Limit - Message Credits - RUD [/accounts/{memberId}/sendlimits/{messageCreditId}{?fields}]
 Definition of a Send Limit Cycle
@@ -332,7 +340,7 @@ Total counts of jobs for a given account for a given date range, grouped by stat
     + memberId (required) ... MID for the account
     + fields (optional, string ) ... Comma Separated string of event fields to be returned.
         + Values 
-            + `total`
+            + `count`
             + `pending`
             + `processing`
             + `completed`
@@ -349,7 +357,7 @@ Total counts of jobs for a given account for a given date range, grouped by stat
                     "parent": { "href": "/accounts/{memberId}/jobs" }
                 },
                 "memberId": "{memberId}",
-                "total": 654248,
+                "count": 654248,
                 "pending" : 234234,
                 "processing" : 23423,
                 "completed" : 234,
@@ -368,7 +376,7 @@ v2 - Total counts of jobs for a given account for a given date range, grouped by
     + memberId (required) ... MID for the account
     + fields (optional, string ) ... Comma Separated string of event fields to be returned.
         + Values 
-            + `total`
+            + `count`
             + `pending`
             + `processing`
             + `completed`
@@ -385,7 +393,7 @@ v2 - Total counts of jobs for a given account for a given date range, grouped by
                     "parent": { "href": "/accounts/{memberId}/jobs" }
                 },
                 "memberId": "{memberId}",
-                "total": 100000,
+                "count": 100000,
                 "pending" : { 
                     "count" : 2000,
                     "percent" : 2.000
@@ -408,41 +416,44 @@ v2 - Total counts of jobs for a given account for a given date range, grouped by
 
 
 ## Account Events [/accounts/{memberId}/events{?fields,startDate,endDate}]
-A collection of all events that have occurred for an account, total.
+A summary of all events that have occurred for an account for a given timerange, rolled into a single object.
 
 + Model (application/json)
-    JSON Representation of events that have occurred on an Account, rolled up daily
+    JSON Representation of events that have occurred on an Account, between the startDate and endDate provided.
+
     + Body
     
             {
                 "_links": {
                     "daily": { "href": "/accounts/{id}/events/daily{?fields,startDate,endDate}"},
                     "hourly": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}"},
-                    "self": { "href": "/accounts/{id}/events{?fields,startDate,endDate}" },
+                    "self": { "href": "/accounts/{id}/events/summary{?fields,startDate,endDate}" },
                     "parent": { "href": "/accounts/{id}" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "status" : {
                   "toSend": 18714, 
                   "inProgress" : { 
-                    "total" : 100, 
+                    "count" : 100, 
                     "percent" : 0.005 
                   },
                   "pending" : { 
-                    "total" : 200, 
+                    "count" : 200, 
                     "percent" : 0.011 
                   }
                 },
                 "sent" : { 
-                  "total" : 18500, 
+                  "count" : 18500, 
                   "percent" : 98.856 
                 },
                 "delivered": { 
-                  "total" : 18495, 
+                  "count" : 18495, 
                   "percent" : 98.830
                 },
                 "bounced" : { 
-                  "total" : 164, 
+                  "count" : 164, 
                   "percent" : 0.009,
                   "hard" : 14, 
                   "soft" : 100, 
@@ -452,27 +463,27 @@ A collection of all events that have occurred for an account, total.
                 },
                 "opened" : { 
                   "unique" : {
-                    "total" : 18333,
+                    "count" : 18333,
                     "percent" : 97.964
                   },
-                  "total" : 18400
+                  "count" : 18400
                 },
                 "clicked" : { 
                   "unique" : {
-                    "total" : 18222,
+                    "count" : 18222,
                     "percent" : 97.371
                   },
-                  "total" : 18300
+                  "count" : 18300
                 },
                 "unsubscribed": { 
-                  "total" : 3, 
+                  "count" : 3, 
                   "percent" : 0.001 
                 },
                 "apiErrors" : { 
-                  "total" : 0
+                  "count" : 0
                 },
                 "emailErrors" : { 
-                  "total" : 0, 
+                  "count" : 0, 
                   "percent" : 0.000 
                 }
             }
@@ -481,15 +492,15 @@ A collection of all events that have occurred for an account, total.
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate=`creationDate of first message created by account` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.
+    + endDate=`now` (optional, string) ... ISO8601 formatted Date string, end time to cap results on. 
 
-### Retrieve all Events for an Account [GET]
+### Retrieve Events Summary for an Account [GET]
 + Response 200
     [Account Events][]
 
 ## Account Events Daily [/accounts/{memberId}/events/daily{?fields,startDate,endDate}]
-A collection of events that have occurred for an account, rolled into 24 hour chunks
+A collection of events that have occurred for an account, rolled into 24 hour chunks.
 
 + Model (application/json)
     JSON Representation of events that have occurred on an Account, rolled up daily
@@ -502,30 +513,32 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                     "parent": { "href": "/accounts/{id}/events" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "Events": [
                     {
                         "date" : "2014-02-06T07:06:00Z",
                         "status" : {
                           "toSend": 18714, 
                           "inProgress" : { 
-                            "total" : 100, 
+                            "count" : 100, 
                             "percent" : 0.005 
                           },
                           "pending" : { 
-                            "total" : 200, 
+                            "count" : 200, 
                             "percent" : 0.011 
                           }
                         },
                         "sent" : { 
-                          "total" : 18500, 
+                          "count" : 18500, 
                           "percent" : 98.856 
                         },
                         "delivered": { 
-                          "total" : 18495, 
+                          "count" : 18495, 
                           "percent" : 98.830
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 14, 
                           "soft" : 100, 
@@ -535,27 +548,27 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
+                            "count" : 18333,
                             "percent" : 97.964
                           },
-                          "total" : 18400
+                          "count" : 18400
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
+                            "count" : 18222,
                             "percent" : 97.371
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
+                          "count" : 3, 
                           "percent" : 0.001 
                         },
                         "apiErrors" : { 
-                            "total" : 0
+                            "count" : 0
                         },
                         "emailErrors" : { 
-                          "total" : 0, 
+                          "count" : 0, 
                           "percent" : 0.000 
                         }
                     },
@@ -564,24 +577,24 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         "status" : {
                           "toSend": 18714, 
                           "inProgress" : { 
-                            "total" : 100, 
+                            "count" : 100, 
                             "percent" : 0.005 
                           },
                           "pending" : { 
-                            "total" : 200, 
+                            "count" : 200, 
                             "percent" : 0.011 
                           }
                         },
                         "sent" : { 
-                          "total" : 18500, 
+                          "count" : 18500, 
                           "percent" : 98.856 
                         },
                         "delivered": { 
-                          "total" : 18495, 
+                          "count" : 18495, 
                           "percent" : 98.830
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 14, 
                           "soft" : 100, 
@@ -591,27 +604,27 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
+                            "count" : 18333,
                             "percent" : 97.964
                           },
-                          "total" : 18400
+                          "count" : 18400
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
+                            "count" : 18222,
                             "percent" : 97.371
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
+                          "count" : 3, 
                           "percent" : 0.001 
                         },
                         "apiErrors" : { 
-                          "total" : 0
+                          "count" : 0
                         },
                         "emailErrors" : { 
-                          "total" : 0, 
+                          "count" : 0, 
                           "percent" : 0.000 
                         }
                     },
@@ -620,24 +633,24 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         "status" : {
                           "toSend": 18714, 
                           "inProgress" : { 
-                            "total" : 100, 
+                            "count" : 100, 
                             "percent" : 0.005 
                           },
                           "pending" : { 
-                            "total" : 200, 
+                            "count" : 200, 
                             "percent" : 0.011 
                           }
                         },
                         "sent" : { 
-                          "total" : 18500, 
+                          "count" : 18500, 
                           "percent" : 98.856 
                         },
                         "delivered": { 
-                          "total" : 18495, 
+                          "count" : 18495, 
                           "percent" : 98.830
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 14, 
                           "soft" : 100, 
@@ -647,27 +660,27 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
+                            "count" : 18333,
                             "percent" : 97.964
                           },
-                          "total" : 18400
+                          "count" : 18400
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
+                            "count" : 18222,
                             "percent" : 97.371
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
+                          "count" : 3, 
                           "percent" : 0.001 
                         },
                         "apiErrors" : { 
-                          "total" : 0
+                          "count" : 0
                         },
                         "emailErrors" : { 
-                          "total" : 0, 
+                          "count" : 0, 
                           "percent" : 0.000 
                         }
                     }
@@ -677,8 +690,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate=`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from. 
+    + endDate=`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Events for an Account with daily precision [GET]
 + Response 200
@@ -695,30 +708,32 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                     "self": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}" },
                     "parent": { "href": "/accounts/{id}/events" }
                 },
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "Events": [
                     {
                         "date" : "2014-02-04T01:00:00Z",
                         "status" : {
                           "toSend": 18714, 
                           "inProgress" : { 
-                            "total" : 100, 
+                            "count" : 100, 
                             "percent" : 0.005 
                           },
                           "pending" : { 
-                            "total" : 200, 
+                            "count" : 200, 
                             "percent" : 0.011 
                           }
                         },
                         "sent" : { 
-                          "total" : 18500, 
+                          "count" : 18500, 
                           "percent" : 98.856 
                         },
                         "delivered": { 
-                          "total" : 18495, 
+                          "count" : 18495, 
                           "percent" : 98.830
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 14, 
                           "soft" : 100, 
@@ -728,27 +743,27 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
+                            "count" : 18333,
                             "percent" : 97.964
                           },
-                          "total" : 18400
+                          "count" : 18400
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
+                            "count" : 18222,
                             "percent" : 97.371
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
+                          "count" : 3, 
                           "percent" : 0.001 
                         },
                         "apiErrors" : { 
-                          "total" : 0
+                          "count" : 0
                         },
                         "emailErrors" : { 
-                          "total" : 0, 
+                          "count" : 0, 
                           "percent" : 0.000 
                         }
                     },
@@ -757,24 +772,24 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         "status" : {
                           "toSend": 18714, 
                           "inProgress" : { 
-                            "total" : 100, 
+                            "count" : 100, 
                             "percent" : 0.005 
                           },
                           "pending" : { 
-                            "total" : 200, 
+                            "count" : 200, 
                             "percent" : 0.011 
                           }
                         },
                         "sent" : { 
-                          "total" : 18500, 
+                          "count" : 18500, 
                           "percent" : 98.856 
                         },
                         "delivered": { 
-                          "total" : 18495, 
+                          "count" : 18495, 
                           "percent" : 98.830
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 14, 
                           "soft" : 100, 
@@ -784,27 +799,27 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
+                            "count" : 18333,
                             "percent" : 97.964
                           },
-                          "total" : 18400
+                          "count" : 18400
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
+                            "count" : 18222,
                             "percent" : 97.371
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
+                          "count" : 3, 
                           "percent" : 0.001 
                         },
                         "apiErrors" : { 
-                          "total" : 0
+                          "count" : 0
                         },
                         "emailErrors" : { 
-                          "total" : 0, 
+                          "count" : 0, 
                           "percent" : 0.000 
                         }
                     },
@@ -813,24 +828,24 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         "status" : {
                           "toSend": 18714, 
                           "inProgress" : { 
-                            "total" : 100, 
+                            "count" : 100, 
                             "percent" : 0.005 
                           },
                           "pending" : { 
-                            "total" : 200, 
+                            "count" : 200, 
                             "percent" : 0.011 
                           }
                         },
                         "sent" : { 
-                          "total" : 18500, 
+                          "count" : 18500, 
                           "percent" : 98.856 
                         },
                         "delivered": { 
-                          "total" : 18495, 
+                          "count" : 18495, 
                           "percent" : 98.830
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 14, 
                           "soft" : 100, 
@@ -840,27 +855,27 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18333,
+                            "count" : 18333,
                             "percent" : 97.964
                           },
-                          "total" : 18400
+                          "count" : 18400
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18222,
+                            "count" : 18222,
                             "percent" : 97.371
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 3, 
+                          "count" : 3, 
                           "percent" : 0.001 
                         },
                         "apiErrors" : { 
-                          "total" : 0
+                          "count" : 0
                         },
                         "emailErrors" : { 
-                          "total" : 0, 
+                          "count" : 0, 
                           "percent" : 0.000 
                         }
                     }
@@ -870,8 +885,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Parameters
     + memberId (required) ... MID for the account
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate = `Now - 24 hours` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.
+    + endDate = `Now` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Events for an Account, with Hourly precision [GET]
 
@@ -882,7 +897,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 # Group Jobs resource
 
 ## Jobs Events [/jobs/{id}/events{?fields}]
-A single Event object belonging to a job.
+A single Event object belonging to a job.  Always returns the latest values for the job, no date/time filtering allowed.
 
 + Parameters
     + id (required, number, `123`) ... Numeric `id` of the Job to retrieve events from
@@ -895,18 +910,21 @@ A single Event object belonging to a job.
             {
                 "_links": {
                     "self": { "href": "/jobs/{id}/events" },
+                    "message" : { "href" : "/messages/{messageId}" },
                     "parent": { "href": "/jobs/{id}" }
                 },
                 "id": "{id}",
+                "accountId" : "{accountId}",
+                "messageId" : "{messageId}",
                 "sent" : { 
-                  "total" : 18500 
+                  "count" : 18500 
                 },
                 "delivered": { 
-                  "total" : 18336, 
+                  "count" : 18336, 
                   "percent" : 99.114
                 },
                 "bounced" : { 
-                  "total" : 164, 
+                  "count" : 164, 
                   "percent" : 0.009,
                   "hard" : 12, 
                   "soft" : 100, 
@@ -916,20 +934,20 @@ A single Event object belonging to a job.
                 },
                 "opened" : { 
                   "unique" : {
-                    "total" : 18133,
+                    "count" : 18133,
                     "percent" : 98.731
                   },
-                  "total" : 18200
+                  "count" : 18200
                 },
                 "clicked" : { 
                   "unique" : {
-                    "total" : 18022,
+                    "count" : 18022,
                     "percent" : 98.288
                   },
-                  "total" : 18300
+                  "count" : 18300
                 },
                 "unsubscribed": { 
-                  "total" : 33, 
+                  "count" : 33, 
                   "percent" : 0.002 
                 }
             }
@@ -939,7 +957,7 @@ A single Event object belonging to a job.
     [Jobs Events][]
 
 ## Jobs Status [/jobs/{id}/status{?fields}]
-Status information of a job for a given date range
+Status information of a job
 
 + Parameters
     + id (required) ... id of the job
@@ -1006,18 +1024,12 @@ Email thumbnail for a job
 
 # Group Message Resource
 
-## Message Root [/messages/{id}]
-The Message Resource
-
-+ Parameters
-    + id (required) ... id for the message - can be the MessageID or CustomerKey of a message object
-
-### Delete a Message [DELETE]
-+ Response 204
-
 
 ## Create Triggered Message [/messages/triggered]
 Create a new TriggeredSendDefinition
+
++   triggeredSendStatus, potential values: Inactive, Active, Canceled 
++   priority : Low, Medium, High
 
 + Model (application/json)
     JSON Response when a TriggeredSendDefinition is created
@@ -1030,7 +1042,7 @@ Create a new TriggeredSendDefinition
                 "emailId" : 1000,
                 "customerKey" : "customerKey123",
                 "listId" : 400,
-                "triggeredSendStatus" : "New", /*Inactive, Active, Canceled*/
+                "triggeredSendStatus" : "New", 
                 "sendClassification" : { 
                     "customerKey" : "sc CustomerKey123", 
                     "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
@@ -1043,8 +1055,8 @@ Create a new TriggeredSendDefinition
                     "customerKey" : "dp CustomerKey", 
                     "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
                 },
-                "autoAddSubscribers" : true, /*bool*/
-                "autoUpdateSubscribers" : true, /*bool*/
+                "autoAddSubscribers" : true, 
+                "autoUpdateSubscribers" : true, 
                 "ccEmail" : "an@email.com",
                 "bccEmail" : "an@email.com",
                 "emailSubject" : "The email subject",
@@ -1055,11 +1067,13 @@ Create a new TriggeredSendDefinition
                 "campaignId" : 1000, /* doesn't exist in current SDK */
                 "refreshContent" : true,
                 "exclusionFilter" : "ampScript Goes Here",
-                "priority" : "Low", /* Medium, High */
+                "priority" : "Low", 
                 "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
             }
 
 ### Create a Triggered Send Definition Message [POST]
+
+
 + Request (application/json)
 
         {
@@ -1068,7 +1082,7 @@ Create a new TriggeredSendDefinition
             "emailId" : 1000,
             "customerKey" : "customerKey123",
             "listId" : 400,
-            "triggeredSendStatus" : "New", /*Inactive, Active, Canceled - do we want to allow changing status upon creation?*/
+            "triggeredSendStatus" : "New", 
             "sendClassification" : { 
                 "customerKey" : "sc CustomerKey123", 
                 "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
@@ -1081,8 +1095,8 @@ Create a new TriggeredSendDefinition
                 "customerKey" : "dp CustomerKey", 
                 "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
             },
-            "autoAddSubscribers" : true, /*bool*/
-            "autoUpdateSubscribers" : true, /*bool*/
+            "autoAddSubscribers" : true, 
+            "autoUpdateSubscribers" : true, 
             "ccEmail" : "an@email.com",
             "bccEmail" : "an@email.com",
             "emailSubject" : "The email subject",
@@ -1090,10 +1104,10 @@ Create a new TriggeredSendDefinition
             "isWrapped" : true,
             "suppressTracking" : true,
             "categoryId" : 2147483683,
-            "campaignId" : 1000, /* doesn't exist in current SDK */
+            "campaignId" : 1000, 
             "refreshContent" : true,
             "exclusionFilter" : "ampScript Goes Here",
-            "priority" : "Low", /* Medium, High */
+            "priority" : "Low", 
             "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
         }
 
@@ -1139,7 +1153,17 @@ The Triggered Send Message Resource
                 "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }],                        
                 "exclusionFilter" : "ampScript Goes Here",
                 "priority" : "Low",
-                "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
+                "version": 4,
+                "created": {
+                    "name": "Joe Schmoe",
+                    "date": "2014-02-04T03:00:00Z"
+                },
+                "modified": {
+                    "name": "Fred Fredrickson",
+                    "date": "2014-02-04T03:00:00Z"
+                },
+                "lastSentDate": "2014-02-04T03:00:00Z"
             }
 
 
@@ -1188,7 +1212,17 @@ Search for triggeredSendDefinitions
                         "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }],                        
                         "exclusionFilter" : "ampScript Goes Here",
                         "priority" : "Low",
-                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
+                        "version": 4,
+                        "created": {
+                            "name": "Joe Schmoe",
+                            "date": "2014-02-04T03:00:00Z"
+                        },
+                        "modified": {
+                            "name": "Fred Fredrickson",
+                            "date": "2014-02-04T03:00:00Z"
+                        },
+                        "lastSentDate": "2014-02-04T03:00:00Z"
                     },
                     {
                         "id" : "3BC9D7FE-BE25-E111-8480-001CC49493B1",
@@ -1212,7 +1246,17 @@ Search for triggeredSendDefinitions
                         "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }],                        
                         "exclusionFilter" : "ampScript Goes Here",
                         "priority" : "Low",
-                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
+                        "version": 4,
+                        "created": {
+                            "name": "Joe Schmoe",
+                            "date": "2014-02-04T03:00:00Z"
+                        },
+                        "modified": {
+                            "name": "Fred Fredrickson",
+                            "date": "2014-02-04T03:00:00Z"
+                        },
+                        "lastSentDate": "2014-02-04T03:00:00Z"
                     },
                     {
                         "id" : "3BC9D7FE-BE25-E111-8480-001CC49493B2",
@@ -1236,7 +1280,17 @@ Search for triggeredSendDefinitions
                         "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }],                        
                         "exclusionFilter" : "ampScript Goes Here",
                         "priority" : "Low",
-                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
+                        "version": 4,
+                        "created": {
+                            "name": "Joe Schmoe",
+                            "date": "2014-02-04T03:00:00Z"
+                        },
+                        "modified": {
+                            "name": "Fred Fredrickson",
+                            "date": "2014-02-04T03:00:00Z"
+                        },
+                        "lastSentDate": "2014-02-04T03:00:00Z"
                     }
                 ]
             }
@@ -1304,9 +1358,9 @@ Search for triggeredSendDefinitions
 + Response 200
 [Search for Triggered Messages][]
 
-## Triggered Send Status [/messages/triggered/status{?startDate,endDate}]
+## Triggered Send Status [/messages/triggered/status{?fields,startDate,endDate}]
 
-Counts of triggered sends.
+Status information about a triggered send.  Retrieves status for the account ID based upon token used to make the call.
 
 + Model (application/json)
     JSON Representation of Statuses of Triggered Sends
@@ -1314,10 +1368,13 @@ Counts of triggered sends.
     
             {
                 "_links": {
-                    "self": { "href": "/messages/triggered/status" },
+                    "self": { "href": "/messages/triggered/status{?startDate,endDate}" },
                     "parent": { "href": "/messages/triggered" }
                 },
-                "total": 134, 
+                "accountId" : "{accountId}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
+                "count": 134, 
                 "active" : 32,
                 "paused" : 7,
                 "stopped" : 12,
@@ -1326,8 +1383,21 @@ Counts of triggered sends.
             }
 
 + Parameters
-    + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from.  Depending on Precision, this may be rounded to the nearest Day or Hour.
+    + startDate =`creationDate of message` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from. 
     + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + fields = `count,active` (optional, string) ... comma separated list of fields to return
+        + values
+            + `accountId`
+            + `startDate`
+            + `endDate`
+            + `accountId`
+            + `count`
+            + `active`
+            + `paused`
+            + `stopped`
+            + `deleted`
+            + `new`
+            
 
 ### Retrieve Triggered Send counts [GET]
 
@@ -1355,7 +1425,7 @@ Send a message using a pre-existing triggered send definition
 
 
 ## Message Events [/messages/{id}/events{?fields,startDate,endDate}]
-A collection of all events that have occurred for a message, total.
+A collection of all events that have occurred for a message for a given time range.  Results are collated into a single result.
 
 + Model (application/json)
     JSON Representation of events that have occurred on a Message
@@ -1369,15 +1439,17 @@ A collection of all events that have occurred for a message, total.
                     "parent": { "href": "/messages/{id}" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "sent" : { 
-                  "total" : 18500 
+                  "count" : 18500 
                 },
                 "delivered": { 
-                  "total" : 18336, 
+                  "count" : 18336, 
                   "percent" : 99.114
                 },
                 "bounced" : { 
-                  "total" : 164, 
+                  "count" : 164, 
                   "percent" : 0.009,
                   "hard" : 12, 
                   "soft" : 100, 
@@ -1387,20 +1459,20 @@ A collection of all events that have occurred for a message, total.
                 },
                 "opened" : { 
                   "unique" : {
-                    "total" : 18133,
+                    "count" : 18133,
                     "percent" : 98.731
                   },
-                  "total" : 18200
+                  "count" : 18200
                 },
                 "clicked" : { 
                   "unique" : {
-                    "total" : 18022,
+                    "count" : 18022,
                     "percent" : 98.288
                   },
-                  "total" : 18300
+                  "count" : 18300
                 },
                 "unsubscribed": { 
-                  "total" : 33, 
+                  "count" : 33, 
                   "percent" : 0.002 
                 }
             }
@@ -1408,15 +1480,15 @@ A collection of all events that have occurred for a message, total.
 + Parameters
     + id (required) ... id for the message
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate=`creationDate of Message` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from. 
+    + endDate=`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve all Events for a Message [GET]
 + Response 200
     [Message Events][]
 
 ## Message Events Daily [/messages/{id}/events/daily{?fields,startDate,endDate}]
-A collection of events that have occurred for a message, rolled into 24 hour chunks
+A collection of events that have occurred for a message, rolled into 24 hour chunks.
 
 + Model (application/json)
     JSON Representation of events that have occurred on a Message, rolled up daily
@@ -1429,18 +1501,20 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                     "parent": { "href": "/message/{id}/events" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "Events": [
                     {
                         "date" : "2014-02-06T07:06:00Z",
                         "sent" : { 
-                          "total" : 18500 
+                          "count" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18336, 
+                          "count" : 18336, 
                           "percent" : 99.114
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 12, 
                           "soft" : 100, 
@@ -1450,34 +1524,34 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18133,
+                            "count" : 18133,
                             "percent" : 98.731
                           },
-                          "total" : 18200
+                          "count" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18022,
+                            "count" : 18022,
                             "percent" : 98.288
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 33, 
+                          "count" : 33, 
                           "percent" : 0.002 
                         }
                     },
                     {
                         "date" : "2014-02-05T07:06:00Z",
                         "sent" : { 
-                          "total" : 18500 
+                          "count" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18336, 
+                          "count" : 18336, 
                           "percent" : 99.114
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 12, 
                           "soft" : 100, 
@@ -1487,34 +1561,34 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18133,
+                            "count" : 18133,
                             "percent" : 98.731
                           },
-                          "total" : 18200
+                          "count" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18022,
+                            "count" : 18022,
                             "percent" : 98.288
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 33, 
+                          "count" : 33, 
                           "percent" : 0.002 
                         }
                     },
                     {
                         "date" : "2014-02-04T07:06:00Z",
                         "sent" : { 
-                          "total" : 18500 
+                          "count" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18336, 
+                          "count" : 18336, 
                           "percent" : 99.114
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 12, 
                           "soft" : 100, 
@@ -1524,20 +1598,20 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18133,
+                            "count" : 18133,
                             "percent" : 98.731
                           },
-                          "total" : 18200
+                          "count" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18022,
+                            "count" : 18022,
                             "percent" : 98.288
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 33, 
+                          "count" : 33, 
                           "percent" : 0.002 
                         }
                     }
@@ -1547,8 +1621,8 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
 + Parameters
     + id (required) ... id for the message
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate=`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
+    + endDate=`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Events for a Message with daily precision [GET]
 + Response 200
@@ -1566,18 +1640,20 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                     "parent": { "href": "/message/{id}/events" }
                 },
                 "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
                 "Events": [
                     {
                         "date" : "2014-02-04T01:00:00Z",
                         "sent" : { 
-                          "total" : 18500 
+                          "count" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18336, 
+                          "count" : 18336, 
                           "percent" : 99.114
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 12, 
                           "soft" : 100, 
@@ -1587,34 +1663,34 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18133,
+                            "count" : 18133,
                             "percent" : 98.731
                           },
-                          "total" : 18200
+                          "count" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18022,
+                            "count" : 18022,
                             "percent" : 98.288
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 33, 
+                          "count" : 33, 
                           "percent" : 0.002 
                         }
                     },
                     {
                         "date" : "2014-02-04T02:00:00Z",
                         "sent" : { 
-                          "total" : 18500 
+                          "count" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18336, 
+                          "count" : 18336, 
                           "percent" : 99.114
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 12, 
                           "soft" : 100, 
@@ -1624,34 +1700,34 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18133,
+                            "count" : 18133,
                             "percent" : 98.731
                           },
-                          "total" : 18200
+                          "count" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18022,
+                            "count" : 18022,
                             "percent" : 98.288
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 33, 
+                          "count" : 33, 
                           "percent" : 0.002 
                         }
                     },
                     {
                         "date" : "2014-02-04T03:00:00Z",
                         "sent" : { 
-                          "total" : 18500 
+                          "count" : 18500 
                         },
                         "delivered": { 
-                          "total" : 18336, 
+                          "count" : 18336, 
                           "percent" : 99.114
                         },
                         "bounced" : { 
-                          "total" : 164, 
+                          "count" : 164, 
                           "percent" : 0.009,
                           "hard" : 12, 
                           "soft" : 100, 
@@ -1661,20 +1737,20 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         },
                         "opened" : { 
                           "unique" : {
-                            "total" : 18133,
+                            "count" : 18133,
                             "percent" : 98.731
                           },
-                          "total" : 18200
+                          "count" : 18200
                         },
                         "clicked" : { 
                           "unique" : {
-                            "total" : 18022,
+                            "count" : 18022,
                             "percent" : 98.288
                           },
-                          "total" : 18300
+                          "count" : 18300
                         },
                         "unsubscribed": { 
-                          "total" : 33, 
+                          "count" : 33, 
                           "percent" : 0.002 
                         }
                     }
@@ -1684,8 +1760,8 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
 + Parameters
     + id (required) ... id for the message
     + fields (optional, string) ... event fields requested, default is all fields
-    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
-    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + startDate=`now - 24 hours` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting events from.  Depending on Precision, this may be rounded to the nearest Day or Hour
+    + endDate=`now` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
 ### Retrieve Events for a Message, with Hourly precision [GET]
 
@@ -1792,3 +1868,6 @@ Delete a queued transaction from a paused message
 
 ### Delete Queued Transaction for a Message [DELETE]
 + Response 204
+
+# Group Contacts
+
